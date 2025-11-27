@@ -2,7 +2,8 @@
 <header id="main-header"
     class="fixed w-full h-[115px] top-0 z-50  flex items-center transition-all duration-300">
 
-    <nav class="container mx-auto px-4 w-full flex items-center justify-between">
+    <nav class="container mx-auto max-w-screen-2xl
+    px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 w-full flex items-center justify-between">
 
         <!-- Logo -->
         <div class="flex items-center space-x-3">

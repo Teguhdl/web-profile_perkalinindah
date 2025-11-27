@@ -19,7 +19,8 @@
 </section>
 <!-- Services Section -->
 <section id="produk" class="py-20 bg-gray-50">
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto max-w-screen-2xl
+    px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Rubber Dock Fender -->
             <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
