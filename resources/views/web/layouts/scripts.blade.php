@@ -32,14 +32,14 @@
         header.classList.remove('bg-white', 'shadow-lg');
         header.classList.add('bg-transparent');
         updateColors("white");
-        logo.src = "{{ asset('assets/web/logo.png') }}";
+        logo.src = "{{ asset('assets/web/logo/logo.png') }}";
     }
 
     function setHeaderWhite() {
         header.classList.add('bg-white', 'shadow-lg');
         header.classList.remove('bg-transparent');
         updateColors("black");
-        logo.src = "{{ asset('assets/web/logo_black.png') }}";
+        logo.src = "{{ asset('assets/web/logo/logo_black.png') }}";
     }
 
     // INTERSECTION OBSERVER

@@ -8,7 +8,7 @@
         <!-- Logo -->
         <div class="flex items-center space-x-3">
             <img id="main-logo"
-                src="{{ asset('assets/web/logo.png') }}"
+                src="{{ asset('assets/web/logo/logo.png') }}"
                 alt="PT. Perkalin Indah Logo"
                 class="w-[180px] h-20 object-contain transition-all duration-300">
         </div>
