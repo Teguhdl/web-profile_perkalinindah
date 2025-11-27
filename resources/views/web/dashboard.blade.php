@@ -218,7 +218,7 @@
         <!-- TITLE -->
         <div class="text-center mb-14">
             <h2 class="text-4xl font-bold text-gray-900">
-                Trusted by Many Companies
+               Mitra Kami
             </h2>
             <p class="text-gray-600 mt-3 text-lg">
                 Perusahaan yang telah mempercayakan kebutuhan industrinya kepada kami.

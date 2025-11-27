@@ -86,11 +86,11 @@
          }
 
          .track-left {
-             animation: scroll-left-mobile 12s linear infinite !important;
+             animation: scroll-left-mobile 6s linear infinite !important;
          }
 
          .track-right {
-             animation: scroll-right-mobile 12s linear infinite !important;
+             animation: scroll-right-mobile 6s linear infinite !important;
          }
      }
  </style>
