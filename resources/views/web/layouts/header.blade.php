@@ -15,35 +15,45 @@
 
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8">
-            <a href="#" class="text-red-600 font-semibold border-b-2 border-red-600 pb-1">Beranda</a>
 
-            <!-- Tentang Dropdown (DESKTOP) -->
-            <div class="relative">
-                <button id="dropdown-btn-desktop"
-                    class="nav-link text-white hover:text-red-600 transition flex items-center">
-                    Tentang
+            @foreach ($menus as $menu)
+
+            {{-- MENU TANPA ANAK --}}
+            @if ($menu->children->isEmpty())
+            <a href="{{ $menu->slug === '/' ? url('/') : url($menu->slug) }}"
+                class="nav-link text-white hover:text-red-600 transition">
+                {{ $menu->label }}
+            </a>
+            @else
+            {{-- MENU DENGAN DROPDOWN --}}
+            <div class="relative group">
+                <button class="nav-link text-white hover:text-red-600 transition flex items-center">
+                    {{ $menu->label }}
                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M19 9l-7 7-7-7"></path>
+                            d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
 
-                <div id="dropdown-menu-desktop"
-                    class="hidden absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2">
-                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profil Perusahaan</a>
-                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Visi & Misi</a>
-                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Tim Kami</a>
+                <div
+                    class="hidden group-hover:block absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2">
+                    @foreach ($menu->children as $child)
+                    <a href="{{ url($child->slug) }}"
+                        class="block px-4 py-2 text-gray-800 hover:bg-gray-100">
+                        {{ $child->label }}
+                    </a>
+                    @endforeach
                 </div>
             </div>
+            @endif
 
-            <a href="#produk" class="nav-link text-white hover:text-red-600 transition">Produk</a>
-            <a href="#mitra" class="nav-link text-white hover:text-red-600 transition">Mitra</a>
-
-            <a href="#kontak"
+            @endforeach
+             <a href="#kontak"
                 class="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition font-semibold">
                 Kontak
             </a>
         </div>
+
 
         <!-- Mobile Menu Button -->
         <button id="mobile-menu-btn" class="md:hidden text-white transition-all duration-300">
@@ -56,51 +66,43 @@
     </nav>
 
     <!-- MOBILE MENU -->
-   <div id="mobile-menu" 
-    class="hidden opacity-0 absolute top-full left-0 w-full bg-white shadow-xl rounded-b-2xl py-4 px-6 z-50">
+    <div id="mobile-menu"
+        class="hidden opacity-0 absolute top-full left-0 w-full bg-white shadow-xl rounded-b-2xl py-4 px-6 z-50">
 
-        <!-- WRAPPER AGAR ADA JARAK KIRI–KANAN -->
         <div class="px-6 space-y-2">
 
-            <a href="#" class="block py-3 text-black font-medium hover:bg-gray-100 rounded-xl">
-                Beranda
+            @foreach ($menus as $menu)
+
+            {{-- MENU TANPA ANAK --}}
+            @if ($menu->children->isEmpty())
+            <a href="{{ $menu->slug === '/' ? url('/') : url($menu->slug) }}"
+                class="block py-3 text-black font-medium hover:bg-gray-100 rounded-xl">
+                {{ $menu->label }}
             </a>
-
-            <!-- Tentang (Dropdown) -->
-            <button id="dropdown-btn-mobile"
-                class="w-full flex justify-between items-center py-3 text-black font-medium hover:bg-gray-100 rounded-xl transition">
-                Tentang
-
-                <!-- SVG ICON -->
-                <svg id="dropdown-icon-mobile" class="w-5 h-5 transition-transform duration-300"
-                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            @else
+            {{-- MENU DENGAN DROPDOWN --}}
+            <button class="w-full flex justify-between items-center py-3 text-black font-medium hover:bg-gray-100 rounded-xl transition">
+                {{ $menu->label }}
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M19 9l-7 7-7-7"></path>
+                        d="M19 9l-7 7-7-7" />
                 </svg>
             </button>
 
-            <div id="dropdown-menu-mobile"
-                class="hidden pl-4 space-y-2 ml-1 border-l-2 border-gray-300">
-
-                <a href="#" class="block text-black py-2 hover:text-red-600">Profil Perusahaan</a>
-                <a href="#" class="block text-black py-2 hover:text-red-600">Visi & Misi</a>
-                <a href="#" class="block text-black py-2 hover:text-red-600">Tim Kami</a>
-
+            <div class="hidden pl-4 space-y-2 ml-1 border-l-2 border-gray-300">
+                @foreach ($menu->children as $child)
+                <a href="{{ url($child->slug) }}"
+                    class="block text-black py-2 hover:text-red-600">
+                    {{ $child->label }}
+                </a>
+                @endforeach
             </div>
+            @endif
 
-            <a href="#produk" class="block py-3 text-black font-medium hover:bg-gray-100 rounded-xl">
-                Produk
-            </a>
-
-            <a href="#mitra" class="block py-3 text-black font-medium hover:bg-gray-100 rounded-xl">
-                Mitra
-            </a>
-
-            <a href="#kontak" class="block py-3 text-black font-medium hover:bg-gray-100 rounded-xl">
-                Kontak
-            </a>
+            @endforeach
 
         </div>
     </div>
+
 
 </header>

@@ -1,6 +1,6 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>PT. Perkalin Indah - Provider Solution Rubber and Metal Part</title>
+    @include('web.layouts.meta',['meta' => $meta])
  <script src="https://cdn.tailwindcss.com"></script>
  <style>
      .hero-bg {

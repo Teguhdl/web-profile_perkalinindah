@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\PageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +14,8 @@ use App\Http\Controllers\Web\DashboardController;
 |
 */
 
-    Route::get('/', [DashboardController::class, 'index'])->name('web.dashboard');
+Route::get('/', [PageController::class, 'home'])->name('home');
+// Route dinamis semua halaman lain
+Route::get('/{slug}', [PageController::class, 'show'])->name('page.show');
+
+
