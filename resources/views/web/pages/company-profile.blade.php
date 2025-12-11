@@ -1,49 +1,85 @@
 @extends('web.layouts.master')
 
 @section('content')
-<section id="tentang-kami"
-    class="about-bg bg-gray-50 pt-[130px] pb-[100px]">   <!-- 🔥 Tambahkan padding-top agar tidak ketutup header -->
+<section class="pt-[150px] pb-20 bg-white overflow-hidden">
+    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-20">
+            {{-- Kiri: Teks --}}
+            <div class="relative pt-4 pl-4"> {{-- Add padding to account for the offset --}}
+                {{-- Judul --}}
+                <div class="mb-6">
+                    <h1 class="text-4xl md:text-5xl font-bold text-black leading-tight">
+                        Profil <br> Perusahaan
+                    </h1>
+                </div>
 
-    <div class="container mx-auto max-w-screen-2xl
-        px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
-
-            <!-- TEXT / KIRI -->
-            <div class="space-y-5">
-                <h2 class="text-4xl font-bold text-gray-900 leading-tight">
-                    Tentang Kami
-                </h2>
-                <p class="text-gray-700 leading-relaxed text-lg">
-                    <strong>PT. Perkalin Indah</strong> didirikan pada tahun 1973 dan bergerak di bidang industri berbagai jenis barang yang terbuat dari karet, polyurethane, logam, dan plastik.
-                </p>
-
-                <p class="text-gray-700 leading-relaxed text-lg">
-                    Perkembangan teknologi yang semakin pesat telah mendorong perusahaan-perusahaan industri, termasuk PT Perkalin Indah, untuk terus meningkatkan efektivitas dan efisiensi dalam operasional bisnisnya.
-                </p>
-
-                <p class="text-gray-700 leading-relaxed text-lg">
-                    PT Perkalin Indah berkomitmen untuk senantiasa memberi prioritas kepada klien, bekerja secara profesional, berintegritas, efektif, dan efisien, serta memperhatikan standar K3.
-                </p>
-
-                <a href="#profil-lengkap"
-                    class="inline-block mt-4 px-6 py-3 bg-red-600 text-white font-semibold rounded-xl 
-                           shadow-md hover:bg-red-800 transition-all duration-200">
-                    Baca Selengkapnya →
-                </a>
+                {{-- Card Text Wrapper --}}
+                <div class="relative">
+                    {{-- Red Background Accent --}}
+                    {{-- Positioned absolute relative to this wrapper --}}
+                    <div class="absolute -bottom-5 -left-5 w-full h-full bg-[#FF0000] rounded-[30px]"></div>
+                    
+                    {{-- White Content --}}
+                    <div class="relative bg-white border border-gray-100 rounded-[30px] p-8 shadow-sm z-10">
+                        <p class="text-gray-700 text-sm md:text-base leading-relaxed mb-4 text-justify">
+                            PT. PERKALIN INDAH didirikan tahun 1973 yang bergerak di bidang industri berbagai jenis barang-barang yang terbuat dari karet, polyurethane, logam dan plastik. Perkembangan teknologi yang semakin berkembang kian memicu perusahaan-perusahaan industri khususnya di perusahaan PT Perkalin Indah untuk lebih efektif dan efisien dalam kegiatan usahanya.
+                        </p>
+                        <p class="text-gray-700 text-sm md:text-base leading-relaxed text-justify">
+                            PT Perkalin Indah berkomitmen untuk senantiasa memberi prioritas pada klien, bekerja secara profesional, berintegritas, efektif, efisien serta memperhatikan standar K3 (Keselamatan, kesehatan, kerja) dari lingkungan kerja. Komitmen tersebut demi memenuhi ekspektasi klien atas setiap karya yang kami kerjakan.
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            <!-- GAMBAR / KANAN -->
-            <div class="relative w-full h-[420px] md:h-[480px] hidden md:block">
+            {{-- Kanan: Grid Gambar --}}
+            <div class="grid grid-cols-3 gap-4 h-full">
+                {{-- Gambar Besar Kanan Atas --}}
+                <div class="col-span-3 lg:col-span-3 h-[250px] md:h-[300px] overflow-hidden rounded-tr-[50px]">
+                     {{-- Placeholder / Asset --}}
+                    <img src="{{ asset('assets/web/dashboard/about2.png') }}" alt="Building Construction" class="w-full h-full object-cover">
+                </div>
+                 {{-- Gambar Kecil Kiri Bawah --}}
+                <div class="col-span-1 h-[150px] overflow-hidden rounded-bl-[30px]">
+                     <img src="{{ asset('assets/web/dashboard/about1.png') }}" alt="Worker" class="w-full h-full object-cover">
+                </div>
+                 {{-- Gambar Kecil Tengah Bawah --}}
+                <div class="col-span-1 h-[150px] overflow-hidden">
+                     <img src="{{ asset('assets/web/dashboard/about2.png') }}" alt="Cranes" class="w-full h-full object-cover">
+                </div>
+                 {{-- Gambar Kecil Kanan Bawah --}}
+                <div class="col-span-1 h-[150px] overflow-hidden rounded-br-[30px]">
+                     <img src="{{ asset('assets/web/dashboard/about1.png') }}" alt="Structure" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
 
-                <img src="{{ asset('assets/web/dashboard/about2.png') }}"
-                    class="absolute top-0 right-0 w-full md:w-[70%] rounded-3xl shadow-2xl object-cover" />
-
-                <img src="{{ asset('assets/web/dashboard/about1.png') }}"
-                    class="absolute bottom-6 left-6 w-full md:w-[85%] rounded-3xl shadow-xl object-cover z-10" />
-
+        {{-- SECTION 2: SERTIFIKASI --}}
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {{-- Kiri: Logo ISO & SNI --}}
+            <div class="lg:col-span-3 flex flex-col items-center lg:items-start space-y-8">
+                <img src="{{ asset('assets/web/iso-sni-logo.png') }}" alt="ISO and SNI Logos" class="w-full h-auto max-w-[200px]">
             </div>
 
+            {{-- Kanan: Text Description --}}
+            <div class="lg:col-span-9 relative pt-4 pr-4"> {{-- Add padding to account for offset --}}
+                {{-- Card Text Wrapper --}}
+                <div class="relative">
+                    {{-- Pink/Red Background Accent --}}
+                    {{-- Positioned absolute to the right-bottom --}}
+                    <div class="absolute -bottom-4 -right-4 w-full h-full bg-[#FF9F9F] rounded-[40px]"></div>
+                    
+                    {{-- White Content --}}
+                    <div class="relative bg-white border border-gray-200 rounded-[40px] p-8 z-10">
+                        <p class="text-gray-700 text-sm md:text-base leading-relaxed text-justify mb-4">
+                            PT Perkalin Indah berlokasi di Jl. Raya Cibeunying, Desa Cipeundeuy, Kec. Cipeundeuy-Subang. Pabrik ini didukung dengan fasilitas teknik, produksi untuk memastikan kami menghasilkan produk berkualitas tinggi sesuai dengan standar Internasional dan Standar Indonesia. Kami hanya menggunakan bahan baku pilihan untuk produk kami.
+                        </p>
+                        <p class="text-gray-700 text-sm md:text-base leading-relaxed text-justify">
+                            Sebagai hasil dari upaya untuk terus meningkatkan kualitas, pada tahun 2023, PT Perkalin Indah telah mencapai standar kualitas internasional dengan memperoleh sertifikat ISO 14001:2015 yang dikeluarkan oleh Americo Quality Standards Regitech Pvt. Ltd & Sertifikasi standar dan keanggotaan organisasi bisnis di Indonesia: SNI (Indonesian National Standard), since 2023.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
