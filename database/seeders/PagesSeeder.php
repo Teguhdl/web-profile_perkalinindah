@@ -27,7 +27,7 @@ class PagesSeeder extends Seeder
                 'label' => 'Tentang',
                 'slug' => null,
                 'parent_id' => 0,
-                'view_name' => null,
+                'view_name' => "-",
                 'meta_title' => 'Tentang Kami – PT Perkalin Indah',
                 'meta_description' => 'Informasi mengenai sejarah, profil, dan perkembangan PT Perkalin Indah sebagai perusahaan manufaktur komponen industri.',
                 'meta_keywords' => 'tentang perkalin indah, company profile, sejarah perusahaan, industri manufaktur',
