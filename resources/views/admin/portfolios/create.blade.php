@@ -49,7 +49,7 @@
 
             <div class="mb-6">
                 <label class="block text-gray-700 text-sm font-bold mb-2">Gambar Proyek</label>
-                <input type="file" name="image" required class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"/>
+                <input type="file" name="image" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"/>
                 @error('image') <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p> @enderror
             </div>
 

@@ -33,7 +33,7 @@ class PortfolioController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'client' => 'nullable|string|max:255',
             'year' => 'nullable|integer',
             'status' => 'required|in:Publish,Draft',
@@ -86,7 +86,7 @@ class PortfolioController extends Controller
 
         if ($request->hasFile('image')) {
             if ($portfolio->image) {
-                $oldPath = str_replace('storage/', 'public/', $portfolio->image);
+                $oldPath = str_replace('storage/', '', $portfolio->image);
                 if (Storage::exists($oldPath)) {
                     Storage::delete($oldPath);
                 }
@@ -119,7 +119,7 @@ class PortfolioController extends Controller
     public function destroy(Portfolio $portfolio)
     {
         if ($portfolio->image) {
-            $oldPath = str_replace('storage/', 'public/', $portfolio->image);
+            $oldPath = str_replace('storage/', '', $portfolio->image);
             if (Storage::exists($oldPath)) {
                 Storage::delete($oldPath);
             }

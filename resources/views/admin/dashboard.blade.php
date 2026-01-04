@@ -15,7 +15,6 @@
             <div class="p-3 bg-blue-50 rounded-xl text-blue-600">
                 <span class="material-symbols-outlined">inventory_2</span>
             </div>
-             <span class="text-xs font-semibold text-green-600 bg-green-50 px-2 py-1 rounded">+2.5%</span>
         </div>
         <div>
             <p class="text-gray-500 text-sm font-medium">Total Produk</p>
