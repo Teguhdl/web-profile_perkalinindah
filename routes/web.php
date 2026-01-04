@@ -20,6 +20,9 @@ Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/produk/{slug}', [PageController::class, 'productDetail'])->name('product.detail');
 Route::get('/portofolio/{id}', [PageController::class, 'portfolioDetail'])->name('portfolio.detail');
 
+// Route Contact
+Route::post('/contact', [\App\Http\Controllers\Web\ContactController::class, 'store'])->name('contact.store');
+
 // Route dinamis semua halaman lain
 Route::get('/{slug}', [PageController::class, 'show'])->name('page.show');
 

@@ -47,7 +47,7 @@
                     @endif
                 </div>
 
-                <a href="#profil-lengkap"
+                <a href="{{ url('profil-perusahaan') }}"
                     class="inline-block mt-4 px-6 py-3 bg-red-600 text-white font-semibold rounded-xl 
                            shadow-md hover:bg-red-800 transition-all duration-200">
                     Baca Selengkapnya →
@@ -113,102 +113,39 @@
 
         <!-- GRID PRODUK -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-
-            <!-- CARD -->
-            <div class="bg-white rounded-2xl shadow-lg border hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                <img src="{{ asset('assets/web/products/w-fender.jpg') }}"
-                    class="w-full h-56 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-gray-900">W Fender</h3>
-                    <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-                        Bumper karet pelindung yang meredam benturan antara kapal dan dermaga.
-                    </p>
-                    <a href="#" class="flex items-center mt-4 text-red-600 font-semibold hover:underline">
-                        Read More <span class="ml-1 text-[14px]">➜</span>
-                    </a>
+            @forelse($products as $product)
+                <!-- CARD -->
+                <div class="bg-white rounded-2xl shadow-lg border hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+                    <div class="h-56 overflow-hidden">
+                        @if($product->image)
+                            <img src="{{ asset($product->image) }}"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                                alt="{{ $product->title }}">
+                        @else
+                            <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">No Image</div>
+                        @endif
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">{{ $product->title }}</h3>
+                        <p class="text-gray-600 mt-2 text-sm leading-relaxed line-clamp-3">
+                            {{ \Illuminate\Support\Str::limit(strip_tags($product->content), 100) }}
+                        </p>
+                        <a href="{{ route('product.detail', $product->slug) }}" class="flex items-center mt-4 text-red-600 font-semibold hover:underline">
+                            Read More <span class="ml-1 text-[14px]">➜</span>
+                        </a>
+                    </div>
                 </div>
-            </div>
-
-            <!-- CARD -->
-            <div class="bg-white rounded-2xl shadow-lg border hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                <img src="{{ asset('assets/web/products/tubular-fender.jpg') }}"
-                    class="w-full h-56 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-gray-900">Tubular Fender</h3>
-                    <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-                        Fender silinder penyerap benturan kapal pada dermaga.
-                    </p>
-                    <a href="#" class="flex items-center mt-4 text-red-600 font-semibold hover:underline">
-                        Read More <span class="ml-1 text-[14px]">➜</span>
-                    </a>
+            @empty
+                <div class="col-span-3 text-center py-10">
+                    <p class="text-gray-500">Belum ada produk unggulan.</p>
                 </div>
-            </div>
-
-            <!-- CARD -->
-            <div class="bg-white rounded-2xl shadow-lg border hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                <img src="{{ asset('assets/web/products/rubber-unloading.jpg') }}"
-                    class="w-full h-56 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-gray-900">Rubber Unloading Tekstile</h3>
-                    <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-                        Komponen karet yang membantu memindahkan muatan industri tekstil.
-                    </p>
-                    <a href="#" class="flex items-center mt-4 text-red-600 font-semibold hover:underline">
-                        Read More <span class="ml-1 text-[14px]">➜</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- CARD -->
-            <div class="bg-white rounded-2xl shadow-lg border hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                <img src="{{ asset('assets/web/products/roller-pu.jpg') }}"
-                    class="w-full h-56 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-gray-900">Rubber Roller PU</h3>
-                    <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-                        Roller polyurethane kualitas tinggi untuk berbagai mesin industri.
-                    </p>
-                    <a href="#" class="flex items-center mt-4 text-red-600 font-semibold hover:underline">
-                        Read More <span class="ml-1 text-[14px]">➜</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- CARD -->
-            <div class="bg-white rounded-2xl shadow-lg border hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                <img src="{{ asset('assets/web/products/coupling.png') }}"
-                    class="w-full h-56 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-gray-900">Rubber Coupling</h3>
-                    <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-                        Kopling elastis yang mentransmisikan torsi sekaligus meredam getaran.
-                    </p>
-                    <a href="#" class="flex items-center mt-4 text-red-600 font-semibold hover:underline">
-                        Read More <span class="ml-1 text-[14px]">➜</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- CARD -->
-            <div class="bg-white rounded-2xl shadow-lg border hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                <img src="{{ asset('assets/web/products/expansion-joint.png') }}"
-                    class="w-full h-56 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-gray-900">Expansion Joint</h3>
-                    <p class="text-gray-600 mt-2 text-sm leading-relaxed">
-                        Komponen karet fleksibel untuk meredam getaran dan perpindahan.
-                    </p>
-                    <a href="#" class="flex items-center mt-4 text-red-600 font-semibold hover:underline">
-                        Read More <span class="ml-1 text-[14px]">➜</span>
-                    </a>
-                </div>
-            </div>
-
+            @endforelse
         </div>
 
         <!-- BUTTON -->
         <div class="text-center mt-14">
-            <a href="#"
+            <a href="{{ url('/produk') }}"
                 class="inline-block bg-red-600 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-red-700 transition transform hover:scale-105">
                 Lihat Lebih Banyak
             </a>
@@ -330,7 +267,7 @@
                     </div>
                     <div>
                         <p class="font-semibold">Phone</p>
-                        <p class="opacity-90">(0260) 4641643</p>
+                        <p class="opacity-90">{{ $contact_phone }}</p>
                     </div>
                 </div>
 
@@ -342,8 +279,10 @@
                     </div>
                     <div>
                         <p class="font-semibold">Email</p>
-                        <p class="opacity-90">marketing@perkaliindah.com</p>
-                        <p class="opacity-90">purchasing@perkaliindah.com</p>
+                        <p class="opacity-90">{{ $contact_email }}</p>
+                        @if(!empty($contact_email_2))
+                            <p class="opacity-90">{{ $contact_email_2 }}</p>
+                        @endif
                     </div>
                 </div>
 
@@ -356,8 +295,7 @@
                     <div>
                         <p class="font-semibold">Office</p>
                         <p class="opacity-90 leading-snug">
-                            Jl. Cibeuying, Wantilan, Subang,<br>
-                            Kabupaten Subang, Jawa Barat 41272
+                            {!! nl2br(e($contact_address)) !!}
                         </p>
                     </div>
                 </div>
@@ -370,8 +308,8 @@
                     </div>
                     <div>
                         <p class="font-semibold">Business Hours</p>
-                        <p class="opacity-90">Mon – Fri: 8:00 AM – 6:00 PM</p>
-                        <p class="opacity-90">Sat: 9:00 AM – 2:00 PM</p>
+                        <p class="opacity-90">Mon – Fri: {{ $contact_hours_mon_fri }}</p>
+                        <p class="opacity-90">Sat: {{ $contact_hours_sat }}</p>
                     </div>
                 </div>
 
@@ -380,19 +318,20 @@
             <!-- RIGHT FORM PANEL -->
             <div class="bg-white p-10 rounded-3xl shadow-xl border">
 
-                <form action="#" method="POST" class="space-y-6">
-
+                <form action="{{ route('contact.store') }}" method="POST" class="space-y-6">
+                    @csrf
+                    
                     <!-- Name + Email -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="font-semibold">Full Name *</label>
-                            <input type="text" class="w-full mt-2 border rounded-xl px-4 py-3"
+                            <input type="text" name="name" required class="w-full mt-2 border rounded-xl px-4 py-3"
                                 placeholder="Your Name">
                         </div>
 
                         <div>
                             <label class="font-semibold">Email Address *</label>
-                            <input type="email" class="w-full mt-2 border rounded-xl px-4 py-3"
+                            <input type="email" name="email" required class="w-full mt-2 border rounded-xl px-4 py-3"
                                 placeholder="Your Email">
                         </div>
                     </div>
@@ -401,17 +340,17 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="font-semibold">Phone Number</label>
-                            <input type="text" class="w-full mt-2 border rounded-xl px-4 py-3"
+                            <input type="text" name="phone" class="w-full mt-2 border rounded-xl px-4 py-3"
                                 placeholder="+62">
                         </div>
 
                         <div>
                             <label class="font-semibold">Service Interested</label>
-                            <select class="w-full mt-2 border rounded-xl px-4 py-3">
-                                <option>Select a service</option>
-                                <option>Rubber Manufacturing</option>
-                                <option>Metal Parts</option>
-                                <option>Custom Engineering</option>
+                            <select name="service" class="w-full mt-2 border rounded-xl px-4 py-3">
+                                <option value="">Select a service</option>
+                                <option value="Rubber Manufacturing">Rubber Manufacturing</option>
+                                <option value="Metal Parts">Metal Parts</option>
+                                <option value="Custom Engineering">Custom Engineering</option>
                             </select>
                         </div>
                     </div>
@@ -419,12 +358,12 @@
                     <!-- Message -->
                     <div>
                         <label class="font-semibold">Your Message *</label>
-                        <textarea rows="5" class="w-full mt-2 border rounded-xl px-4 py-3"
+                        <textarea name="message" required rows="5" class="w-full mt-2 border rounded-xl px-4 py-3"
                             placeholder="Your Message"></textarea>
                     </div>
 
                     <!-- Button -->
-                    <button
+                    <button type="submit"
                         class="w-full bg-red-600 hover:bg-red-700 transition text-white font-semibold py-4 rounded-2xl text-lg">
                         Send Message
                     </button>

@@ -35,12 +35,20 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
-                    <div class="relative">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Email Utama</label>
+                    <div class="relative mb-3">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
                              <span class="material-symbols-outlined" style="font-size: 18px;">mail</span>
                         </span>
-                        <input type="email" name="contact_email" value="{{ $settings['contact_email'] ?? '' }}" class="w-full bg-gray-50 border-gray-100 rounded-lg pl-10 px-4 py-3 text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors" placeholder="info@company.com">
+                        <input type="email" name="contact_email" value="{{ $settings['contact_email'] ?? '' }}" class="w-full bg-gray-50 border-gray-100 rounded-lg pl-10 px-4 py-3 text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors" placeholder="marketing@company.com">
+                    </div>
+                    
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Email Kedua (Opsional)</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                             <span class="material-symbols-outlined" style="font-size: 18px;">alternate_email</span>
+                        </span>
+                        <input type="email" name="contact_email_2" value="{{ $settings['contact_email_2'] ?? '' }}" class="w-full bg-gray-50 border-gray-100 rounded-lg pl-10 px-4 py-3 text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors" placeholder="support@company.com">
                     </div>
                 </div>
                 <div>
@@ -54,9 +62,21 @@
                 </div>
             </div>
 
-             <div class="mb-6">
+            <div class="mb-6">
                 <label class="block text-sm font-semibold text-gray-700 mb-2">Company Description</label>
                 <textarea name="system_description" rows="4" class="w-full bg-gray-50 border-gray-100 rounded-lg px-4 py-3 text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors" placeholder="Brief description about the company...">{{ $settings['system_description'] ?? '' }}</textarea>
+            </div>
+
+            <!-- Business Hours (Added per request) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                     <label class="block text-sm font-semibold text-gray-700 mb-2">Business Hours (Mon-Fri)</label>
+                     <input type="text" name="contact_hours_mon_fri" value="{{ $settings['contact_hours_mon_fri'] ?? '' }}" class="w-full bg-gray-50 border-gray-100 rounded-lg px-4 py-3 text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors" placeholder="8:00 AM – 6:00 PM">
+                </div>
+                 <div>
+                     <label class="block text-sm font-semibold text-gray-700 mb-2">Business Hours (Sat)</label>
+                     <input type="text" name="contact_hours_sat" value="{{ $settings['contact_hours_sat'] ?? '' }}" class="w-full bg-gray-50 border-gray-100 rounded-lg px-4 py-3 text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors" placeholder="9:00 AM – 2:00 PM">
+                </div>
             </div>
 
             <hr class="border-gray-100 my-8">

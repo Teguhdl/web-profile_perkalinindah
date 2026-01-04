@@ -110,9 +110,38 @@ class PageController extends Controller
              $data['mitras'] = Mitra::all();
         }
 
-        // Fetch Dynamic Content Settings
+        // Fetch Dynamic Content Settings from 'settings' table (General Settings)
+        // Note: We use the Shared Setting model so keys are global.
+        // We just need to make sure we fetch the right keys.
+        
+        $globalSettings = Setting::whereIn('key', [
+            'contact_phone',
+            'contact_email', // Using the one from SettingController (singular) or I should migrate to match
+            'contact_email_2', // Added 2nd email
+            'contact_address',
+            'system_description', // Maybe used in footer?
+            'social_facebook',
+            'social_instagram',
+            'social_twitter',
+            'contact_hours_mon_fri',
+            'contact_hours_sat'
+        ])->pluck('value', 'key');
+        
+        // Merge into data
+        $data = array_merge($data, $globalSettings->toArray());
+
+        // Default fallbacks if keys missing
+        $data['contact_phone'] = $data['contact_phone'] ?? '(0260) 4641643';
+        $data['contact_email'] = $data['contact_email'] ?? 'marketing@perkaliindah.com';
+        $data['contact_email_2'] = $data['contact_email_2'] ?? null; // Optional
+        $data['contact_address'] = $data['contact_address'] ?? 'Jl. Cibeuying, Wantilan, Subang, Kabupaten Subang, Jawa Barat 41272';
+        $data['contact_hours_mon_fri'] = $data['contact_hours_mon_fri'] ?? '8:00 AM – 6:00 PM';
+        $data['contact_hours_sat'] = $data['contact_hours_sat'] ?? '9:00 AM – 2:00 PM';
+        
+        // Page specific content
         if ($page->view_name === 'pages.dashboard') {
-            $data['page_about_content'] = Setting::where('key', 'page_about_content')->value('value');
+             $data['page_about_content'] = Setting::where('key', 'page_about_content')->value('value');
+             $data['products'] = \App\Models\Product::latest()->take(6)->get();
         }
 
         if ($page->slug === 'profil-perusahaan' || $page->view_name === 'pages.company-profile') {

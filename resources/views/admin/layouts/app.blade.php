@@ -98,6 +98,18 @@
                 @if(Auth::guard('admin')->user()->hasPermission('setting.view') || Auth::guard('admin')->user()->hasPermission('admin.view'))
                 <div class="pt-4 pb-2 px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">System</div>
                 @endif
+                
+                <!-- Messages -->
+                 <a href="{{ route('admin.messages.index') }}" class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-colors {{ request()->routeIs('admin.messages.*') ? 'bg-red-50 text-red-600' : 'text-gray-500 hover:bg-gray-50 hover:text-red-600' }}">
+                    <span class="material-symbols-outlined">mail</span>
+                    Pesan Masuk
+                    @php
+                        $unreadCount = \App\Models\ContactMessage::where('is_read', false)->count();
+                    @endphp
+                    @if($unreadCount > 0)
+                        <span class="ml-auto bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">{{ $unreadCount }}</span>
+                    @endif
+                </a>
 
                 <!-- Settings -->
                 @if(Auth::guard('admin')->user()->hasPermission('setting.view'))

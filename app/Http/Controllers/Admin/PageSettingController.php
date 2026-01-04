@@ -18,7 +18,15 @@ class PageSettingController extends Controller
             'page_profile_cert_content',
             'page_visi_content',
             'page_misi_content',
-            'page_about_content'
+            'page_about_content',
+            // Contact Settings
+            'contact_phone',
+            'contact_email_1',
+            'contact_email_2',
+            'contact_address',
+            'contact_maps_link',
+            'contact_hours_mon_fri',
+            'contact_hours_sat'
         ])->pluck('value', 'key');
 
         return view('admin.page_settings.index', compact('settings'));
@@ -62,7 +70,14 @@ class PageSettingController extends Controller
             'page_visi_content' => 'Visi',
             'page_misi_content' => 'Misi',
             'page_about_content' => 'Tentang Kami',
-            'page_team_pdf' => 'PDF Struktur Organisasi'
+            'page_team_pdf' => 'PDF Struktur Organisasi',
+            'contact_phone' => 'No. Telepon',
+            'contact_email_1' => 'Email 1',
+            'contact_email_2' => 'Email 2',
+            'contact_address' => 'Alamat',
+            'contact_maps_link' => 'Link Maps',
+            'contact_hours_mon_fri' => 'Jam Kerja (Senin-Jumat)',
+            'contact_hours_sat' => 'Jam Kerja (Sabtu)'
         ];
 
         foreach ($data as $key => $value) {
