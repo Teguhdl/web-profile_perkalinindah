@@ -18,6 +18,7 @@ Route::get('/', [PageController::class, 'home'])->name('home');
 
 // Route khusus Produk
 Route::get('/produk/{slug}', [PageController::class, 'productDetail'])->name('product.detail');
+Route::get('/portofolio/{id}', [PageController::class, 'portfolioDetail'])->name('portfolio.detail');
 
 // Route dinamis semua halaman lain
 Route::get('/{slug}', [PageController::class, 'show'])->name('page.show');

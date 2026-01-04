@@ -157,4 +157,27 @@ class PageController extends Controller
             'meta' => $meta
         ]);
     }
+
+    public function portfolioDetail($id)
+    {
+        $portfolio = Portfolio::findOrFail($id);
+
+        // Ambil menu wajib untuk layout master
+        $menus = Page::where('parent_id', 0)
+            ->with('children')
+            ->orderBy('id')
+            ->get();
+
+        $meta = [
+            'title' => $portfolio->title . ' - PT. Perkalin Indah',
+            'description' => \Illuminate\Support\Str::limit($portfolio->description, 150),
+            'keywords' => 'portofolio, ' . $portfolio->title,
+        ];
+
+        return view('web.pages.portfolio-detail', [
+            'portfolio' => $portfolio,
+            'menus' => $menus,
+            'meta' => $meta
+        ]);
+    }
 }
