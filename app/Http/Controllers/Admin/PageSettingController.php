@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class PageSettingController extends Controller
 {
@@ -51,6 +53,38 @@ class PageSettingController extends Controller
                 ['value' => 'storage/uploads/pdf/' . $filename, 'type' => 'file']
             );
         }
+
+        // Identify updated sections for logging
+        $updatedSections = [];
+        $keyMap = [
+            'page_company_profile_content' => 'Profil Perusahaan',
+            'page_profile_cert_content' => 'Sertifikasi & Lokasi',
+            'page_visi_content' => 'Visi',
+            'page_misi_content' => 'Misi',
+            'page_about_content' => 'Tentang Kami',
+            'page_team_pdf' => 'PDF Struktur Organisasi'
+        ];
+
+        foreach ($data as $key => $value) {
+            if (isset($keyMap[$key])) {
+                $updatedSections[] = $keyMap[$key];
+            }
+        }
+
+        if ($request->hasFile('page_team_pdf')) {
+            $updatedSections[] = $keyMap['page_team_pdf'];
+        }
+
+        $description = 'Memperbarui konten: ' . implode(', ', array_unique($updatedSections));
+
+        // Log Activity
+        ActivityLog::create([
+            'admin_id' => Auth::guard('admin')->id(),
+            'action' => 'update',
+            'description' => $description,
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->header('User-Agent'),
+        ]);
 
         return redirect()->back()->with('success', 'Konten halaman berhasil diperbarui');
     }
