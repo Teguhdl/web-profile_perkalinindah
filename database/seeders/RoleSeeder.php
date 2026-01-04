@@ -11,20 +11,21 @@ class RoleSeeder extends Seeder
     public function run()
     {
         // 1. Create Super Admin Role
-        $superAdmin = Role::create([
-            'name' => 'Super Admin',
-            'permissions' => ['*'] // Wildcard for all permissions
-        ]);
+        $superAdmin = Role::updateOrCreate(
+            ['name' => 'Super Admin'],
+            ['permissions' => ['*']] // Wildcard
+        );
 
         // 2. Create Editor Role
-        $editor = Role::create([
-            'name' => 'Editor',
-            'permissions' => [
+        $editor = Role::updateOrCreate(
+             ['name' => 'Editor'],
+             ['permissions' => [
                 'product.view', 'product.create', 'product.edit', 'product.delete',
                 'mitra.view', 'mitra.create', 'mitra.edit',
                 'portfolio.view', 'portfolio.create', 'portfolio.edit',
-            ]
-        ]);
+                'message.view', 'message.delete',
+            ]]
+        );
 
         // 3. Assign first admin to Super Admin
         $admin = Admin::where('email', 'admin@gmail.com')->first();

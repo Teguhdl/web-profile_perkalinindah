@@ -18,6 +18,9 @@ class RoleController extends Controller
         'settings' => [
             'setting.view', 'setting.edit',
         ],
+        'messages' => [
+            'message.view', 'message.delete',
+        ],
         'admin_access' => [
             'admin.view', 'admin.create', 'admin.edit', 'admin.delete',
             'role.view', 'role.create', 'role.edit', 'role.delete',

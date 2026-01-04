@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
+    public function __construct() {
+        $this->middleware('check.permission:message.view');
+    }
+
     public function index()
     {
         $messages = ContactMessage::latest()->paginate(10);

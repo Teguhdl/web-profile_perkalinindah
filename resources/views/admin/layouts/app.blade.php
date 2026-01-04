@@ -100,6 +100,7 @@
                 @endif
                 
                 <!-- Messages -->
+                @if(Auth::guard('admin')->user()->hasPermission('message.view'))
                  <a href="{{ route('admin.messages.index') }}" class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-colors {{ request()->routeIs('admin.messages.*') ? 'bg-red-50 text-red-600' : 'text-gray-500 hover:bg-gray-50 hover:text-red-600' }}">
                     <span class="material-symbols-outlined">mail</span>
                     Pesan Masuk
@@ -110,6 +111,7 @@
                         <span class="ml-auto bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">{{ $unreadCount }}</span>
                     @endif
                 </a>
+                @endif
 
                 <!-- Settings -->
                 @if(Auth::guard('admin')->user()->hasPermission('setting.view'))
