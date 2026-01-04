@@ -86,6 +86,14 @@
                 </a>
                 @endif
 
+                <!-- Page Settings -->
+                 @if(Auth::guard('admin')->user()->hasPermission('setting.view'))
+                <a href="{{ route('admin.page_settings.index') }}" class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-colors {{ request()->routeIs('admin.page_settings.*') ? 'bg-red-50 text-red-600' : 'text-gray-500 hover:bg-gray-50 hover:text-red-600' }}">
+                    <span class="material-symbols-outlined">article</span>
+                    Kelola Halaman
+                </a>
+                @endif
+
                 
                 @if(Auth::guard('admin')->user()->hasPermission('setting.view') || Auth::guard('admin')->user()->hasPermission('admin.view'))
                 <div class="pt-4 pb-2 px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">System</div>

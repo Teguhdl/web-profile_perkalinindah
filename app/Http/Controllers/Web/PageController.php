@@ -9,6 +9,7 @@ use App\Models\Product; // Import Product Model
 use App\Models\Portfolio; // Import Portfolio Model
 use App\Models\Mitra; // Import Mitra Model
 use App\Models\Page;
+use App\Models\Setting;
 
 class PageController extends Controller
 {
@@ -107,6 +108,27 @@ class PageController extends Controller
 
         if (in_array($page->view_name, ['pages.dashboard', 'pages.mitra'])) {
              $data['mitras'] = Mitra::all();
+        }
+
+        // Fetch Dynamic Content Settings
+        if ($page->view_name === 'pages.dashboard') {
+            $data['page_about_content'] = Setting::where('key', 'page_about_content')->value('value');
+        }
+
+        if ($page->slug === 'profil-perusahaan' || $page->view_name === 'pages.company-profile') {
+             $settings = Setting::whereIn('key', ['page_company_profile_content', 'page_profile_cert_content'])->pluck('value', 'key');
+             $data['page_company_profile_content'] = $settings['page_company_profile_content'] ?? null;
+             $data['page_profile_cert_content'] = $settings['page_profile_cert_content'] ?? null;
+        }
+
+        if ($page->slug === 'tim-kami' || $page->view_name === 'pages.tim-kami') {
+            $data['page_team_pdf'] = Setting::where('key', 'page_team_pdf')->value('value');
+        }
+
+        if ($page->slug === 'visi-misi' || $page->view_name === 'pages.visi-misi') {
+             $settings = Setting::whereIn('key', ['page_visi_content', 'page_misi_content'])->pluck('value', 'key');
+             $data['page_visi_content'] = $settings['page_visi_content'] ?? null;
+             $data['page_misi_content'] = $settings['page_misi_content'] ?? null;
         }
 
         return view('web.' . $page->view_name, $data);

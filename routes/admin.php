@@ -14,6 +14,11 @@ Route::middleware('admin.auth')->group(function () {
     Route::get('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
     Route::put('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
 
+    // Page Settings
+    Route::get('/page-settings', [\App\Http\Controllers\Admin\PageSettingController::class, 'index'])->name('page_settings.index');
+    Route::post('/page-settings', [\App\Http\Controllers\Admin\PageSettingController::class, 'update'])->name('page_settings.update');
+    Route::post('/page-settings/upload-image', [\App\Http\Controllers\Admin\PageSettingController::class, 'uploadImage'])->name('page_settings.upload_image');
+
     // Products
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
 

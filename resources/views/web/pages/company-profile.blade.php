@@ -22,12 +22,18 @@
                     
                     {{-- White Content --}}
                     <div class="relative bg-white border border-gray-100 rounded-[30px] p-8 shadow-sm z-10">
-                        <p class="text-gray-700 text-sm md:text-base leading-relaxed mb-4 text-justify">
-                            PT. PERKALIN INDAH didirikan tahun 1973 yang bergerak di bidang industri berbagai jenis barang-barang yang terbuat dari karet, polyurethane, logam dan plastik. Perkembangan teknologi yang semakin berkembang kian memicu perusahaan-perusahaan industri khususnya di perusahaan PT Perkalin Indah untuk lebih efektif dan efisien dalam kegiatan usahanya.
-                        </p>
-                        <p class="text-gray-700 text-sm md:text-base leading-relaxed text-justify">
-                            PT Perkalin Indah berkomitmen untuk senantiasa memberi prioritas pada klien, bekerja secara profesional, berintegritas, efektif, efisien serta memperhatikan standar K3 (Keselamatan, kesehatan, kerja) dari lingkungan kerja. Komitmen tersebut demi memenuhi ekspektasi klien atas setiap karya yang kami kerjakan.
-                        </p>
+                        @if(!empty($page_company_profile_content))
+                            <div class="prose prose-red text-gray-700 text-sm md:text-base leading-relaxed text-justify">
+                                {!! $page_company_profile_content !!}
+                            </div>
+                        @else
+                            <p class="text-gray-700 text-sm md:text-base leading-relaxed text-justify mb-4">
+                                PT. PERKALIN INDAH didirikan tahun 1973 yang bergerak di bidang industri berbagai jenis barang-barang yang terbuat dari karet, polyurethane, logam dan plastik. Perkembangan teknologi yang semakin berkembang kian memicu perusahaan-perusahaan industri khususnya di perusahaan PT Perkalin Indah untuk lebih efektif dan efisien dalam kegiatan usahanya.
+                            </p>
+                            <p class="text-gray-700 text-sm md:text-base leading-relaxed text-justify">
+                                PT Perkalin Indah berkomitmen untuk senantiasa memberi prioritas pada klien, bekerja secara profesional, berintegritas, efektif, efisien serta memperhatikan standar K3 (Keselamatan, kesehatan, kerja) dari lingkungan kerja. Komitmen tersebut demi memenuhi ekspektasi klien atas setiap karya yang kami kerjakan.
+                            </p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -71,12 +77,18 @@
                     
                     {{-- White Content --}}
                     <div class="relative bg-white border border-gray-200 rounded-[40px] p-8 z-10">
-                        <p class="text-gray-700 text-sm md:text-base leading-relaxed text-justify mb-4">
-                            PT Perkalin Indah berlokasi di Jl. Raya Cibeunying, Desa Cipeundeuy, Kec. Cipeundeuy-Subang. Pabrik ini didukung dengan fasilitas teknik, produksi untuk memastikan kami menghasilkan produk berkualitas tinggi sesuai dengan standar Internasional dan Standar Indonesia. Kami hanya menggunakan bahan baku pilihan untuk produk kami.
-                        </p>
-                        <p class="text-gray-700 text-sm md:text-base leading-relaxed text-justify">
-                            Sebagai hasil dari upaya untuk terus meningkatkan kualitas, pada tahun 2023, PT Perkalin Indah telah mencapai standar kualitas internasional dengan memperoleh sertifikat ISO 14001:2015 yang dikeluarkan oleh Americo Quality Standards Regitech Pvt. Ltd & Sertifikasi standar dan keanggotaan organisasi bisnis di Indonesia: SNI (Indonesian National Standard), since 2023.
-                        </p>
+                        @if(!empty($page_profile_cert_content))
+                            <div class="prose prose-red text-gray-700 text-sm md:text-base leading-relaxed text-justify">
+                                {!! $page_profile_cert_content !!}
+                            </div>
+                        @else
+                            <p class="text-gray-700 text-sm md:text-base leading-relaxed text-justify mb-4">
+                                PT Perkalin Indah berlokasi di Jl. Raya Cibeunying, Desa Cipeundeuy, Kec. Cipeundeuy-Subang. Pabrik ini didukung dengan fasilitas teknik, produksi untuk memastikan kami menghasilkan produk berkualitas tinggi sesuai dengan standar Internasional dan Standar Indonesia. Kami hanya menggunakan bahan baku pilihan untuk produk kami.
+                            </p>
+                            <p class="text-gray-700 text-sm md:text-base leading-relaxed text-justify">
+                                Sebagai hasil dari upaya untuk terus meningkatkan kualitas, pada tahun 2023, PT Perkalin Indah telah mencapai standar kualitas internasional dengan memperoleh sertifikat ISO 14001:2015 yang dikeluarkan oleh Americo Quality Standards Regitech Pvt. Ltd & Sertifikasi standar dan keanggotaan organisasi bisnis di Indonesia: SNI (Indonesian National Standard), since 2023.
+                            </p>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -14,9 +14,13 @@
                     <span class="block w-full h-[2px] bg-gray-200 mt-4 mx-auto"></span>
                 </h2>
                 
-                <p class="text-lg md:text-xl text-gray-800 leading-relaxed font-medium">
+                <div class="text-lg md:text-xl text-gray-800 leading-relaxed font-medium prose prose-red max-w-none text-center">
+                    @if(!empty($page_visi_content))
+                        {!! $page_visi_content !!}
+                    @else
                     Menjadi <span class="text-red-600 font-bold">one stops solution</span> bagi perusahaan manufaktur yang kompetitif, berkualitas, berkompetensi, handal, inovatif dan berdaya saing serta mampu berkembang <span class="text-red-600 font-bold">sehat</span> dan <span class="text-red-600 font-bold">mandiri</span>.
-                </p>
+                    @endif
+                </div>
             </div>
 
             {{-- MISI CARD --}}
@@ -29,6 +33,11 @@
                     </h2>
                 </div>
 
+                @if(!empty($page_misi_content))
+                    <div class="prose prose-red max-w-none text-gray-800 text-base md:text-lg text-left">
+                        {!! $page_misi_content !!}
+                    </div>
+                @else
                 <ul class="space-y-4 text-gray-800 text-base md:text-lg text-left list-none">
                     <li class="flex items-start">
                         <span class="mr-3 mt-2 w-1.5 h-1.5 bg-black rounded-full flex-shrink-0"></span>
@@ -67,6 +76,7 @@
                         </span>
                     </li>
                 </ul>
+                @endif
             </div>
 
         </div>

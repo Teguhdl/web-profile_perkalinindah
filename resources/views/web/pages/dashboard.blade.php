@@ -29,17 +29,23 @@
                 <h2 class="text-4xl font-bold text-gray-900 leading-tight">
                     Tentang Kami
                 </h2>
-                <p class="text-gray-700 leading-relaxed text-lg">
-                    <strong>PT. Perkalin Indah</strong> didirikan pada tahun 1973 dan bergerak di bidang industri berbagai jenis barang yang terbuat dari karet, polyurethane, logam, dan plastik.
-                </p>
+                <div class="prose prose-red text-gray-700 leading-relaxed text-lg text-justify">
+                    @if(!empty($page_about_content))
+                        {!! $page_about_content !!}
+                    @else
+                    <p class="mb-5">
+                        <strong>PT. Perkalin Indah</strong> didirikan pada tahun 1973 dan bergerak di bidang industri berbagai jenis barang yang terbuat dari karet, polyurethane, logam, dan plastik.
+                    </p>
 
-                <p class="text-gray-700 leading-relaxed text-lg">
-                    Perkembangan teknologi yang semakin pesat telah mendorong perusahaan-perusahaan industri, termasuk PT Perkalin Indah, untuk terus meningkatkan efektivitas dan efisiensi dalam operasional bisnisnya.
-                </p>
+                    <p class="mb-5">
+                        Perkembangan teknologi yang semakin pesat telah mendorong perusahaan-perusahaan industri, termasuk PT Perkalin Indah, untuk terus meningkatkan efektivitas dan efisiensi dalam operasional bisnisnya.
+                    </p>
 
-                <p class="text-gray-700 leading-relaxed text-lg">
-                    PT Perkalin Indah berkomitmen untuk senantiasa memberi prioritas kepada klien, bekerja secara profesional, berintegritas, efektif, dan efisien, serta memperhatikan standar K3 (Keselamatan, Kesehatan, Kerja). Komitmen ini dijalankan guna memenuhi ekspektasi klien atas setiap karya yang kami hasilkan.
-                </p>
+                    <p>
+                        PT Perkalin Indah berkomitmen untuk senantiasa memberi prioritas kepada klien, bekerja secara profesional, berintegritas, efektif, dan efisien, serta memperhatikan standar K3 (Keselamatan, Kesehatan, Kerja). Komitmen ini dijalankan guna memenuhi ekspektasi klien atas setiap karya yang kami hasilkan.
+                    </p>
+                    @endif
+                </div>
 
                 <a href="#profil-lengkap"
                     class="inline-block mt-4 px-6 py-3 bg-red-600 text-white font-semibold rounded-xl 
