@@ -18,7 +18,7 @@
                 Visi & Misi
             </button>
             <button onclick="switchTab('about')" id="tab-about" class="tab-btn w-1/4 py-4 px-1 text-center border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
-                Tentang Kami (Dashboard)
+                Halaman Dashboard
             </button>
             <button onclick="switchTab('team')" id="tab-team" class="tab-btn w-1/4 py-4 px-1 text-center border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
                 Tim Kami (PDF)
@@ -29,6 +29,7 @@
 
     <form action="{{ route('admin.page_settings.update') }}" method="POST" enctype="multipart/form-data" class="p-6">
         @csrf
+        @method('PUT')
         
         <!-- PROFIL PERUSAHAAN -->
         <div id="content-profile" class="tab-content hidden">
@@ -99,12 +100,80 @@
              <p class="text-xs text-gray-400 mt-10 text-center">Tampilan editor disesuaikan dengan kartu Visi & Misi di website.</p>
         </div>
 
-        <!-- TENTANG KAMI -->
+        <!-- DASHBOARD -->
         <div id="content-about" class="tab-content hidden">
-            <h3 class="text-lg font-bold text-gray-900 mb-4">Tentang Kami (Homepage)</h3>
-            <div class="mb-4">
-                <textarea name="page_about_content" class="summernote">{{ $settings['page_about_content'] ?? '' }}</textarea>
+            <h3 class="text-lg font-bold text-gray-900 mb-6">Halaman Dashboard</h3>
+            
+            <!-- HERO SECTION -->
+            <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 mb-8">
+                <h4 class="font-bold text-gray-800 mb-4 border-b pb-2">Hero Section (Atas)</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Judul Utama</label>
+                        <input type="text" name="dashboard_hero_title" value="{{ $settings['dashboard_hero_title'] ?? '' }}" class="w-full bg-white border-gray-300 rounded-lg px-4 py-2" placeholder="PT. PERKALIN INDAH">
+                    </div>
+                     <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Sub Judul</label>
+                        <input type="text" name="dashboard_hero_subtitle" value="{{ $settings['dashboard_hero_subtitle'] ?? '' }}" class="w-full bg-white border-gray-300 rounded-lg px-4 py-2" placeholder="Provider Solution Rubber...">
+                    </div>
+                </div>
             </div>
+
+            <!-- ABOUT SECTION -->
+            <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 mb-8">
+                 <h4 class="font-bold text-gray-800 mb-4 border-b pb-2">Section Tentang Kami</h4>
+                 
+                 <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Konten Deskripsi</label>
+                    <textarea name="page_about_content" class="summernote">{{ $settings['page_about_content'] ?? '' }}</textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                     <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Gambar 1 (Kecil - Depan)</label>
+                         @if(isset($settings['dashboard_about_image_1']))
+                            <div class="mb-2">
+                                <img src="{{ asset($settings['dashboard_about_image_1']) }}" class="h-24 rounded shadow">
+                            </div>
+                        @endif
+                        <input type="file" name="dashboard_about_image_1" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Gambar 2 (Besar - Belakang)</label>
+                         @if(isset($settings['dashboard_about_image_2']))
+                            <div class="mb-2">
+                                <img src="{{ asset($settings['dashboard_about_image_2']) }}" class="h-24 rounded shadow">
+                            </div>
+                        @endif
+                        <input type="file" name="dashboard_about_image_2" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100">
+                    </div>
+                </div>
+            </div>
+
+             <!-- VIDEO SECTION -->
+             <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                 <h4 class="font-bold text-gray-800 mb-4 border-b pb-2">Section Video Profile</h4>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Judul Video</label>
+                        <input type="text" name="dashboard_video_title" value="{{ $settings['dashboard_video_title'] ?? '' }}" class="w-full bg-white border-gray-300 rounded-lg px-4 py-2" placeholder="Video Kami">
+                    </div>
+                     <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Deskripsi Singkat</label>
+                         <input type="text" name="dashboard_video_desc" value="{{ $settings['dashboard_video_desc'] ?? '' }}" class="w-full bg-white border-gray-300 rounded-lg px-4 py-2" placeholder="Sekilas mengenai...">
+                    </div>
+                </div>
+                
+                 <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Upload File Video (MP4)</label>
+                         @if(isset($settings['dashboard_video_url']))
+                            <div class="mb-2 text-sm text-green-600">
+                                Video saat ini: <a href="{{ asset($settings['dashboard_video_url']) }}" target="_blank" class="underline">Lihat Video</a>
+                            </div>
+                        @endif
+                        <input type="file" name="dashboard_video_url" accept="video/mp4" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100">
+                 </div>
+             </div>
         </div>
 
         <!-- TIM KAMI -->

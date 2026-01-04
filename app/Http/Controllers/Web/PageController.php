@@ -140,7 +140,30 @@ class PageController extends Controller
         
         // Page specific content
         if ($page->view_name === 'pages.dashboard') {
-             $data['page_about_content'] = Setting::where('key', 'page_about_content')->value('value');
+             $settings = Setting::whereIn('key', [
+                'page_about_content',
+                'dashboard_hero_title',
+                'dashboard_hero_subtitle',
+                'dashboard_about_image_1',
+                'dashboard_about_image_2',
+                'dashboard_video_title',
+                'dashboard_video_desc',
+                'dashboard_video_url'
+             ])->pluck('value', 'key');
+
+             $data['page_about_content'] = $settings['page_about_content'] ?? null;
+             
+             // Dashboard Vars with Defaults
+             $data['dashboard_hero_title'] = $settings['dashboard_hero_title'] ?? 'PT. PERKALIN INDAH';
+             $data['dashboard_hero_subtitle'] = $settings['dashboard_hero_subtitle'] ?? 'Provider Solution Rubber and Metal Part';
+             
+             $data['dashboard_about_image_1'] = $settings['dashboard_about_image_1'] ?? 'assets/web/dashboard/about2.png';
+             $data['dashboard_about_image_2'] = $settings['dashboard_about_image_2'] ?? 'assets/web/dashboard/about1.png';
+             
+             $data['dashboard_video_title'] = $settings['dashboard_video_title'] ?? 'Video Kami';
+             $data['dashboard_video_desc'] = $settings['dashboard_video_desc'] ?? 'Sekilas mengenai proses produksi dan komitmen PT. Perkalin Indah.';
+             $data['dashboard_video_url'] = $settings['dashboard_video_url'] ?? 'assets/web/video/video-promote.mp4';
+             
              $data['products'] = \App\Models\Product::latest()->take(6)->get();
         }
 

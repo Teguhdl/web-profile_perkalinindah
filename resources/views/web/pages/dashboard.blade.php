@@ -5,10 +5,10 @@
 <section id="hero" class="hero-bg min-h-screen bg-transparent flex items-center justify-center text-center pt-20">
     <div class="bg-[#00000040] max-w-[850px] mx-auto px-6 py-6 rounded-[50px] text-center">
         <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
-            PT. PERKALIN INDAH
+            {{ $dashboard_hero_title }}
         </h1>
         <p class="text-xl md:text-2xl text-white mb-8 font-light">
-            Provider Solution Rubber and Metal Part
+            {{ $dashboard_hero_subtitle }}
         </p>
         <a href="#kontak"
             class="inline-block bg-red-600 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-red-700 transition transform hover:scale-105">
@@ -57,10 +57,10 @@
             <!-- GAMBAR / KANAN — hilang saat mobile -->
             <div class="relative w-full h-[420px] md:h-[480px] hidden md:block">
 
-                <img src="{{ asset('assets/web/dashboard/about2.png') }}"
+                <img src="{{ asset($dashboard_about_image_1) }}"
                     class="absolute top-0 right-0 w-full md:w-[70%] rounded-3xl shadow-2xl object-cover" />
 
-                <img src="{{ asset('assets/web/dashboard/about1.png') }}"
+                <img src="{{ asset($dashboard_about_image_2) }}"
                     class="absolute bottom-6 left-6 w-full md:w-[85%] rounded-3xl shadow-xl object-cover z-10" />
 
             </div>
@@ -75,9 +75,9 @@
         px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
 
         <div class="text-center mb-8">
-            <h2 class="text-4xl font-bold text-gray-900">Video Kami</h2>
+            <h2 class="text-4xl font-bold text-gray-900">{{ $dashboard_video_title }}</h2>
             <p class="text-gray-700 mt-3 text-lg">
-                Sekilas mengenai proses produksi dan komitmen PT. Perkalin Indah.
+                {{ $dashboard_video_desc }}
             </p>
         </div>
 
@@ -86,7 +86,7 @@
                 <div class="relative overflow-hidden rounded-3xl shadow-2xl bg-black">
 
                     <video id="video-profile" controls class="w-full h-auto">
-                        <source src="{{ asset('assets/web/video/video-promote.mp4') }}" type="video/mp4">
+                        <source src="{{ asset($dashboard_video_url) }}" type="video/mp4">
                         Browser Anda tidak mendukung pemutaran video.
                     </video>
 
