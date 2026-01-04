@@ -233,26 +233,32 @@
                 <div class="absolute right-0 top-0 h-full w-24 bg-linear-to-l from-gray-50 to-transparent z-20"></div>
 
                 @php
-                $logos1 = [
-                'logo1.png', 'logo2.png', 'logo3.png', 'logo4.png', 'logo5.png',
-                'logo6.png', 'logo7.png', 'logo8.png', 'logo9.png', 'logo10.png'
-                ];
-                $logos2 = [
-                'logo11.png', 'logo12.png', 'logo13.png', 'logo14.png', 'logo15.png',
-                'logo16.png', 'logo17.png', 'logo18.png', 'logo19.png'
-                ];
+                    // Split mitras into two chunks for the two scrolling rows
+                    $half = ceil($mitras->count() / 2);
+                    $mitras1 = $mitras->take($half);
+                    $mitras2 = $mitras->skip($half);
                 @endphp
 
                 <div class="flex space-x-16 whitespace-nowrap track-left">
-                    @foreach ($logos1 as $logo)
-                    <img src="{{ asset('assets/web/company/' . $logo) }}"
-                        class="h-16 object-contain grayscale hover:grayscale-0 transition">
+                    {{-- Loop 1: Original Set --}}
+                    @foreach ($mitras1 as $mitra)
+                    <div class="h-16 w-32 flex-shrink-0 flex items-center justify-center">
+                        <img src="{{ asset($mitra->logo) }}"
+                            alt="{{ $mitra->name }}"
+                            title="{{ $mitra->name }}"
+                            class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300">
+                    </div>
                     @endforeach
-                    @foreach ($logos1 as $logo)
-                    <img src="{{ asset('assets/web/company/' . $logo) }}"
-                        class="h-16 object-contain grayscale hover:grayscale-0 transition">
+                    
+                    {{-- Loop 2: Duplicate for seamless scroll --}}
+                    @foreach ($mitras1 as $mitra)
+                    <div class="h-16 w-32 flex-shrink-0 flex items-center justify-center">
+                        <img src="{{ asset($mitra->logo) }}"
+                            alt="{{ $mitra->name }}"
+                            title="{{ $mitra->name }}"
+                            class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300">
+                    </div>
                     @endforeach
-
                 </div>
             </div>
 
@@ -263,13 +269,24 @@
                 <div class="absolute right-0 top-0 h-full w-24 bg-linear-to-l from-gray-50 to-transparent z-20"></div>
 
                 <div class="flex space-x-16 whitespace-nowrap track-right">
-                    @foreach ($logos2 as $logo)
-                    <img src="{{ asset('assets/web/company/' . $logo) }}"
-                        class="h-16 object-contain grayscale hover:grayscale-0 transition">
+                    {{-- Loop 1: Original Set --}}
+                    @foreach ($mitras2 as $mitra)
+                    <div class="h-16 w-32 flex-shrink-0 flex items-center justify-center">
+                        <img src="{{ asset($mitra->logo) }}"
+                            alt="{{ $mitra->name }}"
+                            title="{{ $mitra->name }}"
+                            class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300">
+                    </div>
                     @endforeach
-                    @foreach ($logos2 as $logo)
-                    <img src="{{ asset('assets/web/company/' . $logo) }}"
-                        class="h-16 object-contain grayscale hover:grayscale-0 transition">
+                    
+                    {{-- Loop 2: Duplicate for seamless scroll --}}
+                    @foreach ($mitras2 as $mitra)
+                    <div class="h-16 w-32 flex-shrink-0 flex items-center justify-center">
+                        <img src="{{ asset($mitra->logo) }}"
+                            alt="{{ $mitra->name }}"
+                            title="{{ $mitra->name }}"
+                            class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300">
+                    </div>
                     @endforeach
 
                 </div>

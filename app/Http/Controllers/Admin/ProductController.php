@@ -164,7 +164,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         if ($product->image) {
-            $oldPath = str_replace('storage/', 'public/', $product->image);
+            $oldPath = str_replace('storage/', '', $product->image);
             if (Storage::exists($oldPath)) {
                 Storage::delete($oldPath);
             }

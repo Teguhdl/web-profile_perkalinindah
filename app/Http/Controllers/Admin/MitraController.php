@@ -41,7 +41,7 @@ class MitraController extends Controller
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('public/mitras', $filename);
+            $path = $file->storeAs('mitras', $filename, 'public');
             $logoPath = 'storage/mitras/' . $filename;
         }
 
@@ -85,7 +85,7 @@ class MitraController extends Controller
 
             $file = $request->file('logo');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('public/mitras', $filename);
+            $path = $file->storeAs('mitras', $filename, 'public');
             $mitra->logo = 'storage/mitras/' . $filename;
         }
 

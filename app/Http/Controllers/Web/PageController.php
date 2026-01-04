@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Product; // Import Product Model
 use App\Models\Portfolio; // Import Portfolio Model
+use App\Models\Mitra; // Import Mitra Model
 use App\Models\Page;
 
 class PageController extends Controller
@@ -102,6 +103,10 @@ class PageController extends Controller
             if (request()->ajax()) {
                 return view('web.pages.partials.portfolio-list', ['portfolios' => $data['portfolios']])->render();
             }
+        }
+
+        if (in_array($page->view_name, ['pages.dashboard', 'pages.mitra'])) {
+             $data['mitras'] = Mitra::all();
         }
 
         return view('web.' . $page->view_name, $data);

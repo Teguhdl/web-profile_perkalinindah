@@ -44,7 +44,7 @@ class PortfolioController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('public/portfolios', $filename);
+            $path = $file->storeAs('portfolios', $filename, 'public');
             $imagePath = 'storage/portfolios/' . $filename;
         }
 
@@ -94,7 +94,7 @@ class PortfolioController extends Controller
 
             $file = $request->file('image');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('public/portfolios', $filename);
+            $path = $file->storeAs('portfolios', $filename, 'public');
             $portfolio->image = 'storage/portfolios/' . $filename;
         }
 

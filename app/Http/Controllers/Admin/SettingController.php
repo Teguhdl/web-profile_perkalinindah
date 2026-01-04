@@ -29,7 +29,7 @@ class SettingController extends Controller
                 // Get old value to delete if needed
                 $oldSetting = Setting::where('key', $key)->first();
                 if ($oldSetting && $oldSetting->type == 'image' && $oldSetting->value) {
-                    Storage::delete(str_replace('storage/', 'public/', $oldSetting->value));
+                    Storage::delete(str_replace('storage/', '', $oldSetting->value));
                 }
 
                 $value = 'storage/settings/' . $filename;
