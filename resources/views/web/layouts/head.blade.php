@@ -1,5 +1,7 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Preload Hero Image -->
+    <link rel="preload" as="image" href="{{ asset('assets/web/dashboard/dashboard.jpg') }}">
     @include('web.layouts.meta',['meta' => $meta])
  <script src="https://cdn.tailwindcss.com"></script>
  <style>

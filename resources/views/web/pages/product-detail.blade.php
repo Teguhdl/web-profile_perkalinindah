@@ -30,21 +30,19 @@
                 </p>
             </div>
 
-            {{-- GALLERY GRID (Simulated) --}}
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                @for($i = 0; $i < 3; $i++)
-                    <div class="rounded-lg overflow-hidden shadow-sm">
-                        @if($product->image)
-                            <img src="{{ asset($product->image) }}" class="w-full h-48 card-image-cover object-cover" alt="{{ $product->title }} gallery">
-                        @else
-                             <div class="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-400">No Image</div>
-                        @endif
-                        <p class="text-xs text-gray-400 mt-2 px-1">
-                            contoh produk {{ $product->title }} Perkalin indah untuk pelabuhan Indonesia (PELINDO)
-                        </p>
+            {{-- GALLERY GRID --}}
+            @if($product->images->count() > 0)
+                <div class="mb-10">
+                    <h3 class="text-2xl font-bold mb-4">Galeri Produk</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        @foreach($product->images as $img)
+                            <div class="rounded-lg overflow-hidden shadow-sm group">
+                                <img src="{{ asset($img->image_path) }}" class="w-full h-48 card-image-cover object-cover transition-transform duration-300 group-hover:scale-105" alt="Gallery {{ $product->title }}">
+                            </div>
+                        @endforeach
                     </div>
-                @endfor
-            </div>
+                </div>
+            @endif
 
             {{-- CTA BUTTON --}}
             <div class="mt-8">

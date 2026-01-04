@@ -7,6 +7,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $activities = \App\Models\ActivityLog::with('admin')->latest()->take(5)->get();
+        
+        return view('admin.dashboard', compact('activities'));
     }
 }
