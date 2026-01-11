@@ -204,5 +204,20 @@
     });
   }
 
+  // --- AUTO SCROLL TO CONTACT IF FEEDBACK EXISTS ---
+  // Check for success or error alerts in the DOM (pure JS approach)
+  // Success alert has 'bg-green-100' and 'border-green-500'
+  // Error alert has 'bg-red-100' and 'border-red-500'
+  const hasFeedback = document.querySelector('.bg-green-100') || document.querySelector('.bg-red-100');
+  
+  if (hasFeedback) {
+    const contactSection = document.getElementById('kontak');
+    if (contactSection) {
+        setTimeout(() => {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+    }
+  }
+
 })();
 </script>

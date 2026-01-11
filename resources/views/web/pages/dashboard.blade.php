@@ -321,18 +321,42 @@
                 <form action="{{ route('contact.store') }}" method="POST" class="space-y-6">
                     @csrf
                     
+                    @if(session('success'))
+                        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
+                            <p class="font-bold">Berhasil!</p>
+                            <p>{{ session('success') }}</p>
+                        </div>
+                    @endif
+
+                    @if($errors->any())
+                        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
+                            <p class="font-bold">Terjadi Kesalahan!</p>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    
                     <!-- Name + Email -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="font-semibold">Full Name *</label>
-                            <input type="text" name="name" required class="w-full mt-2 border rounded-xl px-4 py-3"
+                            <input type="text" name="name" value="{{ old('name') }}" required class="w-full mt-2 border rounded-xl px-4 py-3 @error('name') border-red-500 @enderror"
                                 placeholder="Your Name">
+                            @error('name')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div>
                             <label class="font-semibold">Email Address *</label>
-                            <input type="email" name="email" required class="w-full mt-2 border rounded-xl px-4 py-3"
+                            <input type="email" name="email" value="{{ old('email') }}" required class="w-full mt-2 border rounded-xl px-4 py-3 @error('email') border-red-500 @enderror"
                                 placeholder="Your Email">
+                            @error('email')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
 
@@ -340,26 +364,31 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="font-semibold">Phone Number</label>
-                            <input type="text" name="phone" class="w-full mt-2 border rounded-xl px-4 py-3"
+                            <input type="text" name="phone" value="{{ old('phone') }}" class="w-full mt-2 border rounded-xl px-4 py-3 @error('phone') border-red-500 @enderror"
                                 placeholder="+62">
+                            @error('phone')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div>
                             <label class="font-semibold">Service Interested</label>
-                            <select name="service" class="w-full mt-2 border rounded-xl px-4 py-3">
-                                <option value="">Select a service</option>
-                                <option value="Rubber Manufacturing">Rubber Manufacturing</option>
-                                <option value="Metal Parts">Metal Parts</option>
-                                <option value="Custom Engineering">Custom Engineering</option>
-                            </select>
+                            <input type="text" name="service" value="{{ old('service') }}" class="w-full mt-2 border rounded-xl px-4 py-3 @error('service') border-red-500 @enderror" 
+                                placeholder="e.g. Rubber Manufacturing">
+                             @error('service')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
 
                     <!-- Message -->
                     <div>
                         <label class="font-semibold">Your Message *</label>
-                        <textarea name="message" required rows="5" class="w-full mt-2 border rounded-xl px-4 py-3"
-                            placeholder="Your Message"></textarea>
+                        <textarea name="message" required rows="5" class="w-full mt-2 border rounded-xl px-4 py-3 @error('message') border-red-500 @enderror"
+                            placeholder="Your Message">{{ old('message') }}</textarea>
+                         @error('message')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <!-- Button -->

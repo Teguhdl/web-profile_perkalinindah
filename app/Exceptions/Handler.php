@@ -23,8 +23,10 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (\Illuminate\Http\Exceptions\ThrottleRequestsException $e, $request) {
+            if ($request->is('contact')) { // Only for contact form or check route name
+                return redirect()->back()->withErrors(['message' => 'Terlalu banyak permintaan. Silakan coba lagi nanti.']);
+            }
         });
     }
 }
