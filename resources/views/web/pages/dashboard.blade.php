@@ -57,10 +57,10 @@
             <!-- GAMBAR / KANAN — hilang saat mobile -->
             <div class="relative w-full h-[420px] md:h-[480px] hidden md:block">
 
-                <img src="{{ asset($dashboard_about_image_1) }}" loading="lazy"
+                <img src="{{ asset($dashboard_about_image_1) }}" loading="lazy" alt="Tentang Perkalin Indah 1"
                     class="absolute top-0 right-0 w-full md:w-[70%] rounded-3xl shadow-2xl object-cover" />
 
-                <img src="{{ asset($dashboard_about_image_2) }}" loading="lazy"
+                <img src="{{ asset($dashboard_about_image_2) }}" loading="lazy" alt="Tentang Perkalin Indah 2"
                     class="absolute bottom-6 left-6 w-full md:w-[85%] rounded-3xl shadow-xl object-cover z-10" />
 
             </div>

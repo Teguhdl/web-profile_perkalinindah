@@ -27,7 +27,7 @@
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
                         @if($portfolio->image)
-                            <img class="h-12 w-16 rounded object-cover border border-gray-100" src="{{ asset($portfolio->image) }}" alt="">
+                            <img class="h-12 w-16 rounded object-cover border border-gray-100" src="{{ asset($portfolio->image) }}" alt="{{ $portfolio->title }}">
                         @else
                             <div class="h-12 w-16 rounded bg-gray-100 border border-gray-100 flex items-center justify-center text-xs text-gray-400">No Img</div>
                         @endif

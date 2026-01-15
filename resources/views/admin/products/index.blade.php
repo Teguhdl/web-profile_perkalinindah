@@ -26,7 +26,7 @@
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
                         @if($product->image)
-                            <img class="h-12 w-12 rounded-lg object-cover border border-gray-100" src="{{ asset($product->image) }}" alt="">
+                            <img class="h-12 w-12 rounded-lg object-cover border border-gray-100" src="{{ asset($product->image) }}" alt="{{ $product->title }}">
                         @else
                             <div class="h-12 w-12 rounded-lg bg-gray-100 border border-gray-100 flex items-center justify-center text-xs text-gray-400">No Img</div>
                         @endif
