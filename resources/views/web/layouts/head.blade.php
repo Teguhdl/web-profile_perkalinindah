@@ -1,7 +1,7 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Preload Hero Image -->
-    <link rel="preload" as="image" href="{{ asset('assets/web/dashboard/dashboard.jpg') }}">
+    <link rel="preload" as="image" href="{{ asset('assets/web/dashboard/dashboard.webp') }}">
     @include('web.layouts.meta',['meta' => $meta ?? []])
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
@@ -32,7 +32,7 @@
  <style>
      .hero-bg {
          background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-         url('{{ asset("assets/web/dashboard/dashboard.jpg") }}');
+         url('{{ asset("assets/web/dashboard/dashboard.webp") }}');
          background-size: cover;
          background-position: center;
      }
