@@ -18,13 +18,13 @@
             
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2">Nama Mitra</label>
-                <input type="text" name="name" value="{{ old('name', $mitra->name) }}" required class="shadow-sm border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <input type="text" name="name" value="{{ old('name', $mitra->name) }}" required class="shadow-sm border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 @error('name') <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p> @enderror
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2">Deskripsi Singkat</label>
-                <textarea name="description" rows="3" class="shadow-sm border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500">{{ old('description', $mitra->description) }}</textarea>
+                <textarea name="description" rows="3" class="shadow-sm border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500">{{ old('description', $mitra->description) }}</textarea>
                 @error('description') <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p> @enderror
             </div>
 

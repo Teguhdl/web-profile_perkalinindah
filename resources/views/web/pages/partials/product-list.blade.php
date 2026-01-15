@@ -1,11 +1,11 @@
 @if($products->count() > 0)
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-12">
         @foreach($products as $product)
-        <div class="bg-white rounded-2xl shadow-lg border hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col h-full">
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col h-full">
             {{-- Image --}}
             <div class="h-64 overflow-hidden relative group">
                 @if($product->image)
-                    <img src="{{ asset($product->image) }}" 
+                    <img src="{{ asset($product->image) }}" loading="lazy" 
                          alt="{{ $product->title }}" 
                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 @else

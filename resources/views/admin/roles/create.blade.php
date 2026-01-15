@@ -17,7 +17,7 @@
         
         <div class="mb-6">
             <label class="block text-gray-700 text-sm font-bold mb-2">Nama Role</label>
-            <input type="text" name="name" class="shadow-sm border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent" required placeholder="Contoh: Editor">
+            <input type="text" name="name" class="shadow-sm border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent" required placeholder="Contoh: Editor">
             @error('name') <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p> @enderror
         </div>
 

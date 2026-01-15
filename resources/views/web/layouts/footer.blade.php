@@ -6,6 +6,7 @@
             <div>
                 <div class="flex items-center space-x-3">
                     <img id="main-logo"
+                        loading="lazy"
                         src="{{ asset('assets/web/logo/logo.png') }}"
                         alt="PT. Perkalin Indah Logo"
                         class="w-[200px] h-30 object-contain transition-all duration-300">

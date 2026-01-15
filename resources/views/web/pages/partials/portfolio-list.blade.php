@@ -6,7 +6,7 @@
                 {{-- Image --}}
                 <div class="h-48 overflow-hidden relative">
                     @if($portfolio->image)
-                        <img src="{{ asset($portfolio->image) }}" alt="{{ $portfolio->title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <img src="{{ asset($portfolio->image) }}" alt="{{ $portfolio->title }}" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     @else
                         <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">No Image</div>
                     @endif

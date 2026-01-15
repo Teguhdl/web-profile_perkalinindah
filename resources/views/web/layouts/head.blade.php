@@ -2,8 +2,33 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Preload Hero Image -->
     <link rel="preload" as="image" href="{{ asset('assets/web/dashboard/dashboard.jpg') }}">
-    @include('web.layouts.meta',['meta' => $meta])
- <script src="https://cdn.tailwindcss.com"></script>
+    @include('web.layouts.meta',['meta' => $meta ?? []])
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="stylesheet" href="{{ asset('css/final.css') }}">
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+
+    <!-- Global Schema (Organization) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "{{ $settings['system_name'] ?? 'PT. Perkalin Indah' }}",
+      "url": "{{ url('/') }}",
+      "logo": "{{ asset($settings['system_logo'] ?? 'assets/web/logo.png') }}",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "{{ $settings['contact_phone'] ?? '' }}",
+        "contactType": "customer service"
+      },
+      "sameAs": [
+        "{{ $settings['social_facebook'] ?? '' }}",
+        "{{ $settings['social_instagram'] ?? '' }}",
+        "{{ $settings['social_twitter'] ?? '' }}"
+      ]
+    }
+    </script>
+    @stack('schema')
  <style>
      .hero-bg {
          background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),

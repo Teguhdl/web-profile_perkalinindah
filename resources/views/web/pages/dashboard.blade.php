@@ -57,10 +57,10 @@
             <!-- GAMBAR / KANAN — hilang saat mobile -->
             <div class="relative w-full h-[420px] md:h-[480px] hidden md:block">
 
-                <img src="{{ asset($dashboard_about_image_1) }}"
+                <img src="{{ asset($dashboard_about_image_1) }}" loading="lazy"
                     class="absolute top-0 right-0 w-full md:w-[70%] rounded-3xl shadow-2xl object-cover" />
 
-                <img src="{{ asset($dashboard_about_image_2) }}"
+                <img src="{{ asset($dashboard_about_image_2) }}" loading="lazy"
                     class="absolute bottom-6 left-6 w-full md:w-[85%] rounded-3xl shadow-xl object-cover z-10" />
 
             </div>
@@ -115,10 +115,10 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             @forelse($products as $product)
                 <!-- CARD -->
-                <div class="bg-white rounded-2xl shadow-lg border hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 overflow-hidden group">
                     <div class="h-56 overflow-hidden">
                         @if($product->image)
-                            <img src="{{ asset($product->image) }}"
+                            <img src="{{ asset($product->image) }}" loading="lazy"
                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
                                 alt="{{ $product->title }}">
                         @else
@@ -186,7 +186,7 @@
                     {{-- Loop 1: Original Set --}}
                     @foreach ($mitras1 as $mitra)
                     <div class="h-16 w-32 flex-shrink-0 flex items-center justify-center">
-                        <img src="{{ asset($mitra->logo) }}"
+                        <img src="{{ asset($mitra->logo) }}" loading="lazy"
                             alt="{{ $mitra->name }}"
                             title="{{ $mitra->name }}"
                             class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300">
@@ -196,7 +196,7 @@
                     {{-- Loop 2: Duplicate for seamless scroll --}}
                     @foreach ($mitras1 as $mitra)
                     <div class="h-16 w-32 flex-shrink-0 flex items-center justify-center">
-                        <img src="{{ asset($mitra->logo) }}"
+                        <img src="{{ asset($mitra->logo) }}" loading="lazy"
                             alt="{{ $mitra->name }}"
                             title="{{ $mitra->name }}"
                             class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300">
@@ -215,7 +215,7 @@
                     {{-- Loop 1: Original Set --}}
                     @foreach ($mitras2 as $mitra)
                     <div class="h-16 w-32 flex-shrink-0 flex items-center justify-center">
-                        <img src="{{ asset($mitra->logo) }}"
+                        <img src="{{ asset($mitra->logo) }}" loading="lazy"
                             alt="{{ $mitra->name }}"
                             title="{{ $mitra->name }}"
                             class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300">
@@ -225,7 +225,7 @@
                     {{-- Loop 2: Duplicate for seamless scroll --}}
                     @foreach ($mitras2 as $mitra)
                     <div class="h-16 w-32 flex-shrink-0 flex items-center justify-center">
-                        <img src="{{ asset($mitra->logo) }}"
+                        <img src="{{ asset($mitra->logo) }}" loading="lazy"
                             alt="{{ $mitra->name }}"
                             title="{{ $mitra->name }}"
                             class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition duration-300">
@@ -316,7 +316,7 @@
             </div>
 
             <!-- RIGHT FORM PANEL -->
-            <div class="bg-white p-10 rounded-3xl shadow-xl border">
+            <div class="bg-white p-10 rounded-3xl shadow-xl border border-gray-100">
 
                 <form action="{{ route('contact.store') }}" method="POST" class="space-y-6">
                     @csrf
@@ -343,7 +343,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="font-semibold">Full Name *</label>
-                            <input type="text" name="name" value="{{ old('name') }}" required class="w-full mt-2 border rounded-xl px-4 py-3 @error('name') border-red-500 @enderror"
+                            <input type="text" name="name" value="{{ old('name') }}" required class="w-full mt-2 border border-gray-200 rounded-xl px-4 py-3 @error('name') border-red-500 @enderror"
                                 placeholder="Your Name">
                             @error('name')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -352,7 +352,7 @@
 
                         <div>
                             <label class="font-semibold">Email Address *</label>
-                            <input type="email" name="email" value="{{ old('email') }}" required class="w-full mt-2 border rounded-xl px-4 py-3 @error('email') border-red-500 @enderror"
+                            <input type="email" name="email" value="{{ old('email') }}" required class="w-full mt-2 border border-gray-200 rounded-xl px-4 py-3 @error('email') border-red-500 @enderror"
                                 placeholder="Your Email">
                             @error('email')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -364,7 +364,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="font-semibold">Phone Number</label>
-                            <input type="text" name="phone" value="{{ old('phone') }}" class="w-full mt-2 border rounded-xl px-4 py-3 @error('phone') border-red-500 @enderror"
+                            <input type="text" name="phone" value="{{ old('phone') }}" class="w-full mt-2 border border-gray-200 rounded-xl px-4 py-3 @error('phone') border-red-500 @enderror"
                                 placeholder="+62">
                             @error('phone')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -373,7 +373,7 @@
 
                         <div>
                             <label class="font-semibold">Service Interested</label>
-                            <input type="text" name="service" value="{{ old('service') }}" class="w-full mt-2 border rounded-xl px-4 py-3 @error('service') border-red-500 @enderror" 
+                            <input type="text" name="service" value="{{ old('service') }}" class="w-full mt-2 border border-gray-200 rounded-xl px-4 py-3 @error('service') border-red-500 @enderror" 
                                 placeholder="e.g. Rubber Manufacturing">
                              @error('service')
                                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -384,7 +384,7 @@
                     <!-- Message -->
                     <div>
                         <label class="font-semibold">Your Message *</label>
-                        <textarea name="message" required rows="5" class="w-full mt-2 border rounded-xl px-4 py-3 @error('message') border-red-500 @enderror"
+                        <textarea name="message" required rows="5" class="w-full mt-2 border border-gray-200 rounded-xl px-4 py-3 @error('message') border-red-500 @enderror"
                             placeholder="Your Message">{{ old('message') }}</textarea>
                          @error('message')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>

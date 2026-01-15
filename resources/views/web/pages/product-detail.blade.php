@@ -58,3 +58,51 @@
     </div>
 </section>
 @endsection
+
+@push('schema')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/", 
+  "@type": "Product", 
+  "name": "{{ $product->title }}",
+  "image": "{{ asset($product->image ?? 'assets/web/logo.png') }}",
+  "description": "{{ \Illuminate\Support\Str::limit(strip_tags($product->content), 160) }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "{{ $settings['system_name'] ?? 'PT. Perkalin Indah' }}"
+  },
+  "url": "{{ url()->current() }}",
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ url()->current() }}",
+    "priceCurrency": "IDR",
+    "price": "0", 
+    "availability": "https://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Home",
+    "item": "{{ route('home') }}"
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Products",
+    "item": "{{ url('/produk') }}"
+  },{
+    "@type": "ListItem",
+    "position": 3,
+    "name": "{{ $product->title }}",
+    "item": "{{ url()->current() }}"
+  }]
+}
+</script>
+@endpush

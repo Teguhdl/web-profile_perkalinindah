@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    @include('web.layouts.header', ['menus' => $menus])
+    @include('web.layouts.header', ['menus' => $menus ?? []])
     <main>
         @yield('content')
     </main>

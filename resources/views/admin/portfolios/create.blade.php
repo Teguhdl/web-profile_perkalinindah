@@ -17,24 +17,24 @@
             
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2">Judul Proyek</label>
-                <input type="text" name="title" value="{{ old('title') }}" required class="shadow-sm border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <input type="text" name="title" value="{{ old('title') }}" required class="shadow-sm border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 @error('title') <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p> @enderror
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
                     <label class="block text-gray-700 text-sm font-bold mb-2">Nama Klien</label>
-                    <input type="text" name="client" value="{{ old('client') }}" class="shadow-sm border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <input type="text" name="client" value="{{ old('client') }}" class="shadow-sm border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 </div>
                 <div>
                     <label class="block text-gray-700 text-sm font-bold mb-2">Tahun Pengerjaan</label>
-                    <input type="number" name="year" value="{{ old('year', date('Y')) }}" class="shadow-sm border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <input type="number" name="year" value="{{ old('year', date('Y')) }}" class="shadow-sm border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 </div>
             </div>
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2">Status</label>
-                <select name="status" class="shadow-sm border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <select name="status" class="shadow-sm border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     <option value="Publish" {{ old('status') == 'Publish' ? 'selected' : '' }}>Publish</option>
                     <option value="Draft" {{ old('status') == 'Draft' ? 'selected' : '' }}>Draft</option>
                 </select>
@@ -43,7 +43,7 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2">Deskripsi Proyek</label>
-                <textarea name="description" rows="5" required class="shadow-sm border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500">{{ old('description') }}</textarea>
+                <textarea name="description" rows="5" required class="shadow-sm border border-gray-200 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500">{{ old('description') }}</textarea>
                 @error('description') <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p> @enderror
             </div>
 

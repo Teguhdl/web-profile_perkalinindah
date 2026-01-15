@@ -14,7 +14,7 @@
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-12 gap-y-16 items-center justify-items-center">
             @foreach($mitras as $mitra)
                 <div class="w-full h-24 flex items-center justify-center p-4 transition-transform duration-300 hover:scale-105 group" title="{{ $mitra->name }}">
-                    <img src="{{ asset($mitra->logo) }}" 
+                    <img src="{{ asset($mitra->logo) }}" loading="lazy" 
                          alt="{{ $mitra->name }}" 
                          class="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100">
                 </div>

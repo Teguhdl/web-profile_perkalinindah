@@ -23,6 +23,10 @@ Route::get('/portofolio/{id}', [PageController::class, 'portfolioDetail'])->name
 // Route Contact
 Route::post('/contact', [\App\Http\Controllers\Web\ContactController::class, 'store'])->name('contact.store')->middleware('throttle:2,1');
 
+// Route Sitemap & Robots
+Route::get('/sitemap.xml', [\App\Http\Controllers\Web\SitemapController::class, 'index']);
+Route::get('/robots.txt', [\App\Http\Controllers\Web\SitemapController::class, 'robots']);
+
 // Route dinamis semua halaman lain
 Route::get('/{slug}', [PageController::class, 'show'])->name('page.show');
 

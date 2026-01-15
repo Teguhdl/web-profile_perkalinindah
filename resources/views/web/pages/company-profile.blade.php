@@ -43,19 +43,19 @@
                 {{-- Gambar Besar Kanan Atas --}}
                 <div class="col-span-3 lg:col-span-3 h-[250px] md:h-[300px] overflow-hidden rounded-tr-[50px]">
                      {{-- Placeholder / Asset --}}
-                    <img src="{{ asset('assets/web/dashboard/about2.png') }}" alt="Building Construction" class="w-full h-full object-cover">
+                    <img src="{{ asset('assets/web/dashboard/about2.png') }}" loading="lazy" alt="Building Construction" class="w-full h-full object-cover">
                 </div>
                  {{-- Gambar Kecil Kiri Bawah --}}
                 <div class="col-span-1 h-[150px] overflow-hidden rounded-bl-[30px]">
-                     <img src="{{ asset('assets/web/dashboard/about1.png') }}" alt="Worker" class="w-full h-full object-cover">
+                     <img src="{{ asset('assets/web/dashboard/about1.png') }}" loading="lazy" alt="Worker" class="w-full h-full object-cover">
                 </div>
                  {{-- Gambar Kecil Tengah Bawah --}}
                 <div class="col-span-1 h-[150px] overflow-hidden">
-                     <img src="{{ asset('assets/web/dashboard/about2.png') }}" alt="Cranes" class="w-full h-full object-cover">
+                     <img src="{{ asset('assets/web/dashboard/about2.png') }}" loading="lazy" alt="Cranes" class="w-full h-full object-cover">
                 </div>
                  {{-- Gambar Kecil Kanan Bawah --}}
                 <div class="col-span-1 h-[150px] overflow-hidden rounded-br-[30px]">
-                     <img src="{{ asset('assets/web/dashboard/about1.png') }}" alt="Structure" class="w-full h-full object-cover">
+                     <img src="{{ asset('assets/web/dashboard/about1.png') }}" loading="lazy" alt="Structure" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {{-- Kiri: Logo ISO & SNI --}}
             <div class="lg:col-span-3 flex flex-col items-center lg:items-start space-y-8">
-                <img src="{{ asset('assets/web/iso-sni-logo.png') }}" alt="ISO and SNI Logos" class="w-full h-auto max-w-[200px]">
+                <img src="{{ asset('assets/web/iso-sni-logo.png') }}" loading="lazy" alt="ISO and SNI Logos" class="w-full h-auto max-w-[200px]">
             </div>
 
             {{-- Kanan: Text Description --}}
