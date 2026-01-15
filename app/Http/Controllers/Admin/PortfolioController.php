@@ -9,8 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
+use App\Traits\UploadsWebP;
+
 class PortfolioController extends Controller
 {
+    use UploadsWebP;
     public function __construct()
     {
         $this->middleware('check.permission:portfolio.view')->only(['index', 'show']);
@@ -40,12 +43,8 @@ class PortfolioController extends Controller
             'description' => 'required',
         ]);
 
-        $imagePath = null;
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('portfolios', $filename, 'public');
-            $imagePath = 'storage/portfolios/' . $filename;
+            $imagePath = $this->uploadImage($request->file('image'), 'portfolios');
         }
 
         $portfolio = Portfolio::create([
@@ -92,10 +91,7 @@ class PortfolioController extends Controller
                 }
             }
 
-            $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('portfolios', $filename, 'public');
-            $portfolio->image = 'storage/portfolios/' . $filename;
+            $portfolio->image = $this->uploadImage($request->file('image'), 'portfolios');
         }
 
         $portfolio->title = $request->title;

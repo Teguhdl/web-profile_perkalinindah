@@ -9,8 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
+use App\Traits\UploadsWebP;
+
 class MitraController extends Controller
 {
+    use UploadsWebP;
     public function __construct()
     {
         $this->middleware('check.permission:mitra.view')->only(['index', 'show']);
@@ -37,12 +40,8 @@ class MitraController extends Controller
             'description' => 'nullable',
         ]);
 
-        $logoPath = null;
         if ($request->hasFile('logo')) {
-            $file = $request->file('logo');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('mitras', $filename, 'public');
-            $logoPath = 'storage/mitras/' . $filename;
+            $logoPath = $this->uploadImage($request->file('logo'), 'mitras');
         }
 
         $mitra = Mitra::create([
@@ -83,10 +82,7 @@ class MitraController extends Controller
                 }
             }
 
-            $file = $request->file('logo');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('mitras', $filename, 'public');
-            $mitra->logo = 'storage/mitras/' . $filename;
+            $mitra->logo = $this->uploadImage($request->file('logo'), 'mitras');
         }
 
         $mitra->name = $request->name;

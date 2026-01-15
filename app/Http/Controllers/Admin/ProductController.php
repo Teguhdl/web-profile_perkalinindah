@@ -11,8 +11,11 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
+use App\Traits\UploadsWebP;
+
 class ProductController extends Controller
 {
+    use UploadsWebP;
     public function __construct()
     {
         $this->middleware('check.permission:product.view')->only(['index', 'show']);
@@ -47,10 +50,7 @@ class ProductController extends Controller
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('products', $filename, 'public');
-            $imagePath = 'storage/products/' . $filename;
+            $imagePath = $this->uploadImage($request->file('image'), 'products');
         }
 
         $product = Product::create([
@@ -62,11 +62,10 @@ class ProductController extends Controller
 
         if ($request->hasFile('gallery_images')) {
             foreach ($request->file('gallery_images') as $file) {
-                $filename = time() . '_' . uniqid() . '_' . $file->getClientOriginalName();
-                $path = $file->storeAs('products/gallery', $filename, 'public');
+                 $path = $this->uploadImage($file, 'products/gallery');
                 ProductImage::create([
                     'product_id' => $product->id,
-                    'image_path' => 'storage/products/gallery/' . $filename
+                    'image_path' => $path
                 ]);
             }
         }
@@ -114,20 +113,16 @@ class ProductController extends Controller
                 }
             }
 
-            $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('products', $filename, 'public');
-            $product->image = 'storage/products/' . $filename;
+            $product->image = $this->uploadImage($request->file('image'), 'products');
         }
         
         // Handle new gallery images
         if ($request->hasFile('gallery_images')) {
             foreach ($request->file('gallery_images') as $file) {
-                $filename = time() . '_' . uniqid() . '_' . $file->getClientOriginalName();
-                $path = $file->storeAs('products/gallery', $filename, 'public');
+                 $path = $this->uploadImage($file, 'products/gallery');
                 ProductImage::create([
                     'product_id' => $product->id,
-                    'image_path' => 'storage/products/gallery/' . $filename
+                    'image_path' => $path
                 ]);
             }
         }
