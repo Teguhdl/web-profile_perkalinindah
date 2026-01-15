@@ -42,9 +42,9 @@ class PageController extends Controller
     public function renderPage(Page $page)
     {
         $meta = [
-            'title' => $page->meta_title,
-            'description' => $page->meta_description,
-            'keywords' => $page->meta_keywords,
+            'title' => $page->meta_title ?? 'PT. Perkalin Indah - Rubber & Metal Part Solution',
+            'description' => $page->meta_description ?? 'PT. Perkalin Indah (est. 1973) adalah manufaktur terpercaya produk karet, polyurethane, logam, dan plastik untuk kebutuhan industri, teknik, dan konstruksi di Indonesia.',
+            'keywords' => $page->meta_keywords ?? 'rubber part, metal part, polyurethane, plastik industri, perkalin indah, sparepart pabrik',
         ];
 
         // Ambil menu utama + sub menu
