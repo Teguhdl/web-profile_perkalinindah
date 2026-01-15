@@ -5,3 +5,4 @@
 <meta property="og:description" content="{{ $meta['description'] ?? '' }}">
 <meta property="og:url" content="{{ url()->current() }}">
 <meta property="og:type" content="website">
+<link rel="canonical" href="{{ url()->current() }}">
