@@ -1,108 +1,91 @@
 <!-- Navigation Header -->
-<header id="main-header"
-    class="fixed w-full h-[115px] top-0 z-50  flex items-center transition-all duration-300">
+<header id="main-header" class="cke-hd cke-hd--solid transition-all duration-300">
+    <div class="cke-hd__inner">
+        <!-- Brand / Logo -->
+        <a class="cke-hd__brand" href="{{ url('/') }}">
+            <img class="cke-hd__logo cke-hd__logo--light" src="{{ asset('assets/web/logo/logo.png') }}" alt="PT. Perkalin Indah" style="height: 52px; width: auto; object-fit: contain;">
+            <img class="cke-hd__logo cke-hd__logo--dark" src="{{ asset($settings['system_logo'] ?? 'assets/web/logo/logo.png') }}" alt="PT. Perkalin Indah" style="height: 52px; width: auto; object-fit: contain;">
+        </a>
 
-    <nav class="container mx-auto max-w-screen-2xl
-    px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24 w-full flex items-center justify-between">
+        <style>
+            /* Default: transparent header on top of dark hero */
+            .cke-hd__logo--light {
+                display: block;
+            }
+            .cke-hd__logo--dark {
+                display: none;
+            }
 
-        <!-- Logo -->
-        <div class="flex items-center space-x-3">
-            <img id="main-logo"
-                src="{{ asset('assets/web/logo/logo.png') }}"
-                alt="PT. Perkalin Indah Logo"
-                class="w-[180px] h-20 object-contain transition-all duration-300">
-        </div>
+            /* Solid header state (scrolled / subpages) */
+            .cke-hd--solid .cke-hd__logo--light {
+                display: none;
+            }
+            .cke-hd--solid .cke-hd__logo--dark {
+                display: block;
+            }
+        </style>
 
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center space-x-8">
-
+        <nav class="cke-hd__nav">
             @foreach ($menus as $menu)
-
-            {{-- MENU TANPA ANAK --}}
-            @if ($menu->children->isEmpty())
-            <a href="{{ $menu->slug === '/' ? url('/') : url($menu->slug) }}"
-                class="nav-link text-white hover:text-red-600 transition">
-                {{ $menu->label }}
-            </a>
-            @else
-            {{-- MENU DENGAN DROPDOWN --}}
-            <div class="relative group">
-                <button class="nav-link text-white hover:text-red-600 transition flex items-center">
-                    {{ $menu->label }}
-                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-
-                <div
-                    class="hidden group-hover:block absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2">
-                    @foreach ($menu->children as $child)
-                    <a href="{{ url($child->slug) }}"
-                        class="block px-4 py-2 text-gray-800 hover:bg-gray-100">
-                        {{ $child->label }}
+                {{-- MENU TANPA ANAK --}}
+                @if ($menu->children->isEmpty())
+                    <a href="{{ $menu->slug === '/' ? url('/') : url($menu->slug) }}" class="cke-hd__link">
+                        {{ $menu->label }}
                     </a>
-                    @endforeach
-                </div>
-            </div>
-            @endif
+                @else
+                    {{-- MENU DENGAN DROPDOWN (Native approach for pure CSS fallback) --}}
+                    <div class="relative group" style="position:relative; display:inline-block;">
+                        <button class="cke-hd__link" style="display:flex; align-items:center; background:none; border:none; cursor:pointer;">
+                            {{ $menu->label }}
+                            <svg class="w-4 h-4 ml-1" style="width:16px; height:16px; margin-left:4px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
 
+                        <div class="dropdown-menu hidden" style="position:absolute; top:100%; left:0; background:var(--surface-card); box-shadow:var(--shadow-md); border-radius:var(--radius-md); padding:0.5rem 0; min-width:180px; z-index:100; border:1px solid var(--border-subtle);">
+                            @foreach ($menu->children as $child)
+                                <a href="{{ url($child->slug) }}" style="display:block; padding:0.5rem 1rem; color:var(--text-strong); text-decoration:none; font-size:var(--fs-sm); transition:background var(--dur-fast);">
+                                    {{ $child->label }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
             @endforeach
-             <a href="#kontak"
-                class="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition font-semibold">
-                Kontak
-            </a>
-        </div>
+            <x-cke.button size="sm" variant="primary" href="{{ url('/') }}#kontak">Kontak</x-cke.button>
+        </nav>
 
-
-        <!-- Mobile Menu Button -->
-        <button id="mobile-menu-btn" class="md:hidden text-white transition-all duration-300">
-            <svg id="mobile-menu-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
+        <button id="mobile-menu-btn" class="cke-hd__burger" aria-label="Menu">
+            @include('web.partials.icon', ['name' => 'menu', 'class' => 'menu-icon-open'])
+            @include('web.partials.icon', ['name' => 'x', 'class' => 'menu-icon-close hidden'])
         </button>
-
-    </nav>
-
-    <!-- MOBILE MENU -->
-    <div id="mobile-menu"
-        class="hidden opacity-0 absolute top-full left-0 w-full bg-white shadow-xl rounded-b-2xl py-4 px-6 z-50">
-
-        <div class="px-6 space-y-2">
-
-            @foreach ($menus as $menu)
-
-            {{-- MENU TANPA ANAK --}}
-            @if ($menu->children->isEmpty())
-            <a href="{{ $menu->slug === '/' ? url('/') : url($menu->slug) }}"
-                class="block py-3 text-black font-medium hover:bg-gray-100 rounded-xl">
-                {{ $menu->label }}
-            </a>
-            @else
-            {{-- MENU DENGAN DROPDOWN --}}
-            <button class="w-full flex justify-between items-center py-3 text-black font-medium hover:bg-gray-100 rounded-xl transition">
-                {{ $menu->label }}
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M19 9l-7 7-7-7" />
-                </svg>
-            </button>
-
-            <div class="hidden pl-4 space-y-2 ml-1 border-l-2 border-gray-300">
-                @foreach ($menu->children as $child)
-                <a href="{{ url($child->slug) }}"
-                    class="block text-black py-2 hover:text-red-600">
-                    {{ $child->label }}
-                </a>
-                @endforeach
-            </div>
-            @endif
-
-            @endforeach
-
-        </div>
     </div>
 
-
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="cke-hd__mobile hidden opacity-0 transition-all duration-300" style="position:absolute; top:100%; left:0; width:100%; background:var(--surface-card); box-shadow:var(--shadow-lg); padding:var(--space-4) var(--space-5); display:flex; flex-direction:column; gap:var(--space-2); border-top:1px solid var(--border-subtle);">
+        @foreach ($menus as $menu)
+            @if ($menu->children->isEmpty())
+                <a href="{{ $menu->slug === '/' ? url('/') : url($menu->slug) }}" style="padding:var(--space-3) 0; font-weight:var(--fw-medium); color:var(--text-strong); border-bottom:1px solid var(--border-subtle); text-decoration:none;">
+                    {{ $menu->label }}
+                </a>
+            @else
+                <button class="mobile-dropdown-btn" style="width:100%; display:flex; justify-content:space-between; align-items:center; padding:var(--space-3) 0; font-weight:var(--fw-medium); color:var(--text-strong); background:none; border:none; border-bottom:1px solid var(--border-subtle); cursor:pointer;">
+                    {{ $menu->label }}
+                    <svg class="w-5 h-5" style="width:20px;height:20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="mobile-dropdown-menu hidden" style="padding-left:1rem; border-left:2px solid var(--border-subtle); margin-left:0.5rem; display:flex; flex-direction:column; gap:0.5rem; margin-top:0.5rem;">
+                    @foreach ($menu->children as $child)
+                        <a href="{{ url($child->slug) }}" style="color:var(--text-muted); text-decoration:none; padding:0.25rem 0;">
+                            {{ $child->label }}
+                        </a>
+                    @endforeach
+                </div>
+            @endif
+        @endforeach
+        <div style="margin-top:var(--space-4);">
+            <x-cke.button variant="primary" block href="{{ url('/') }}#kontak">Kontak</x-cke.button>
+        </div>
+    </div>
 </header>

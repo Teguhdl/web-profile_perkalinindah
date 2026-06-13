@@ -5,11 +5,12 @@
     @include('web.layouts.head')
 </head>
 
-<body>
+<body class="cke-app">
     @include('web.layouts.header', ['menus' => $menus ?? []])
     <main>
         @yield('content')
     </main>
     @include('web.layouts.footer')
     @include('web.layouts.scripts')
+    @stack('scripts')
 </body>

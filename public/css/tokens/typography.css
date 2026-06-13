@@ -1,0 +1,61 @@
+/* ============================================================
+   CIPTA KRIYA ENGINEERING — TYPOGRAPHY TOKENS
+   ============================================================ */
+
+:root {
+  /* ---- Families ---- */
+  --font-display: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  --font-body:    'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* ---- Weights ---- */
+  --fw-light:    300; /* @kind font */
+  --fw-regular:  400; /* @kind font */
+  --fw-medium:   500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold:     700; /* @kind font */
+  --fw-black:    800; /* @kind font */
+
+  /* ---- Type scale (1.250 major-third, 16px base) ---- */
+  --fs-2xs:  0.6875rem;  /* 11px — mono micro-labels */
+  --fs-xs:   0.75rem;    /* 12px */
+  --fs-sm:   0.875rem;   /* 14px */
+  --fs-base: 1rem;       /* 16px */
+  --fs-md:   1.125rem;   /* 18px — lead body */
+  --fs-lg:   1.375rem;   /* 22px */
+  --fs-xl:   1.75rem;    /* 28px */
+  --fs-2xl:  2.25rem;    /* 36px */
+  --fs-3xl:  2.875rem;   /* 46px */
+  --fs-4xl:  3.75rem;    /* 60px */
+  --fs-5xl:  4.75rem;    /* 76px — hero display */
+
+  /* ---- Line heights ---- */
+  --lh-tight:   1.05; /* @kind font */
+  --lh-snug:    1.2; /* @kind font */
+  --lh-normal:  1.5; /* @kind font */
+  --lh-relaxed: 1.65; /* @kind font */
+
+  /* ---- Letter spacing ---- */
+  --ls-tighter: -0.03em; /* @kind font */
+  --ls-tight:   -0.015em; /* @kind font */
+  --ls-normal:  0; /* @kind font */
+  --ls-wide:    0.02em; /* @kind font */
+  --ls-wider:   0.08em; /* @kind font */
+  --ls-eyebrow: 0.16em; /* @kind font */
+
+  /* ---- Semantic text roles ---- */
+  --type-display-font:   var(--font-display);
+  --type-display-weight: var(--fw-black);
+  --type-display-ls:     var(--ls-tight);
+
+  --type-heading-font:   var(--font-display);
+  --type-heading-weight: var(--fw-bold);
+
+  --type-eyebrow-font:   var(--font-mono);
+  --type-eyebrow-weight: var(--fw-medium);
+  --type-eyebrow-ls:     var(--ls-eyebrow);
+
+  --type-body-font:      var(--font-body);
+  --type-body-weight:    var(--fw-regular);
+  --type-body-lh:        var(--lh-relaxed);
+}

@@ -1,4 +1,4 @@
-<?php 
+<?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -16,14 +16,27 @@ Route::middleware('admin.auth')->group(function () {
     Route::get('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
     Route::put('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
 
-    // Page Settings
+    // Page Settings (system page content)
     Route::get('/page-settings', [PageSettingController::class, 'index'])->name('page_settings.index');
     Route::put('/page-settings', [PageSettingController::class, 'update'])->name('page_settings.update');
     Route::post('/page-settings/upload-image', [PageSettingController::class, 'uploadImage'])->name('page_settings.upload_image');
 
+    // ===== CUSTOM PAGES (NEW - Paket B) =====
+    Route::resource('pages', \App\Http\Controllers\Admin\PageController::class)->except(['show']);
+
+    // ===== MEDIA LIBRARY (NEW - Bonus) =====
+    Route::prefix('media')->name('media.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\MediaController::class, 'index'])->name('index');
+        Route::get('/browser', [\App\Http\Controllers\Admin\MediaController::class, 'browser'])->name('browser');
+        Route::get('/json', [\App\Http\Controllers\Admin\MediaController::class, 'json'])->name('json');
+        Route::post('/upload', [\App\Http\Controllers\Admin\MediaController::class, 'upload'])->name('upload');
+        Route::patch('/{media}', [\App\Http\Controllers\Admin\MediaController::class, 'updateMeta'])->name('update');
+        Route::delete('/{media}', [\App\Http\Controllers\Admin\MediaController::class, 'destroy'])->name('destroy');
+    });
+
     // Messages
     Route::resource('messages', MessageController::class)->only(['index', 'show', 'destroy']);
-    
+
     // Products
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
 

@@ -1,0 +1,108 @@
+/* ============================================================
+   CIPTA KRIYA ENGINEERING — COLOR TOKENS
+   Palette derived from the corporate logo:
+   azure-cyan gear · lime-leaf green · navy ink.
+   ============================================================ */
+
+:root {
+  /* ---- Brand: Engineering Red (perkalin red) ---- */
+  --cke-blue-50:  #fdf2f2;
+  --cke-blue-100: #fde8e8;
+  --cke-blue-200: #fbd5d5;
+  --cke-blue-300: #f8b4b4;
+  --cke-blue-400: #f98080;
+  --cke-blue-500: #e02424;   /* PRIMARY — matches Perkalin Indah Red */
+  --cke-blue-600: #c81e1e;
+  --cke-blue-700: #9b1c1c;
+  --cke-blue-800: #771d1d;
+  --cke-blue-900: #5c1c1c;
+
+  /* ---- Brand: Slate/Gray secondary ---- */
+  --cke-green-50:  #f8fafc;
+  --cke-green-100: #f1f5f9;
+  --cke-green-200: #e2e8f0;
+  --cke-green-300: #cbd5e1;
+  --cke-green-400: #94a3b8;
+  --cke-green-500: #64748b;   /* SECONDARY — matches slate gray */
+  --cke-green-600: #475569;
+  --cke-green-700: #334155;
+  --cke-green-800: #1e293b;
+  --cke-green-900: #0f172a;
+
+  /* ---- Brand: Orange accent ---- */
+  --cke-lime: #f97316;
+
+  /* ---- Brand: Charcoal Ink ---- */
+  --cke-navy-50:  #f3f4f6;
+  --cke-navy-100: #e5e7eb;
+  --cke-navy-200: #d1d5db;
+  --cke-navy-300: #9ca3af;
+  --cke-navy-400: #6b7280;
+  --cke-navy-500: #374151;
+  --cke-navy-600: #1f2937;
+  --cke-navy-700: #111827;   /* primary heading ink */
+  --cke-navy-800: #030712;
+  --cke-navy-900: #000000;
+
+  /* ---- Neutral: Steel grays (industrial, slightly cool) ---- */
+  --cke-steel-0:   #ffffff;
+  --cke-steel-25:  #fbfcfd;
+  --cke-steel-50:  #f5f7f9;
+  --cke-steel-100: #eceff2;
+  --cke-steel-200: #dde2e7;
+  --cke-steel-300: #c4ccd4;
+  --cke-steel-400: #9aa5b1;
+  --cke-steel-500: #6f7c8a;
+  --cke-steel-600: #515c69;
+  --cke-steel-700: #3c454f;
+  --cke-steel-800: #2a313a;
+  --cke-steel-900: #1a1f25;
+
+  /* ---- Semantic ---- */
+  --cke-success:    #2e9c4f;
+  --cke-success-bg: #e7f5ec;
+  --cke-warning:    #d8932a;
+  --cke-warning-bg: #fbf1de;
+  --cke-danger:     #cf3b3b;
+  --cke-danger-bg:  #fbe9e9;
+  --cke-info:       var(--cke-blue-500);
+  --cke-info-bg:    var(--cke-blue-50);
+
+  /* ============================================================
+     SEMANTIC ALIASES — reference these in product code
+     ============================================================ */
+
+  /* Brand roles */
+  --color-primary:        var(--cke-blue-500);
+  --color-primary-hover:  var(--cke-blue-600);
+  --color-primary-active: var(--cke-blue-700);
+  --color-secondary:        var(--cke-green-500);
+  --color-secondary-hover:  var(--cke-green-600);
+  --color-accent:         var(--cke-lime);
+
+  /* Text */
+  --text-strong:    var(--cke-navy-700);
+  --text-body:      var(--cke-steel-700);
+  --text-muted:     var(--cke-steel-500);
+  --text-subtle:    var(--cke-steel-400);
+  --text-on-brand:  #ffffff;
+  --text-link:      var(--cke-blue-600);
+
+  /* Surfaces */
+  --surface-page:    var(--cke-steel-50);
+  --surface-card:    var(--cke-steel-0);
+  --surface-raised:  var(--cke-steel-0);
+  --surface-sunken:  var(--cke-steel-100);
+  --surface-inverse: var(--cke-navy-700);
+  --surface-brand:   var(--cke-blue-500);
+  --surface-tint:    var(--cke-blue-50);
+
+  /* Borders */
+  --border-subtle:  var(--cke-steel-200);
+  --border-default: var(--cke-steel-300);
+  --border-strong:  var(--cke-steel-400);
+  --border-brand:   var(--cke-blue-500);
+
+  /* Focus ring */
+  --ring-brand: color-mix(in srgb, var(--cke-blue-500) 45%, transparent);
+}

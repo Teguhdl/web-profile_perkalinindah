@@ -1,63 +1,37 @@
 @if($portfolios->count() > 0)
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+    <div class="cke-projects__grid" style="margin-bottom: 3rem;">
         @foreach($portfolios as $portfolio)
-            <div class="bg-white rounded-2xl shadow-md border hover:shadow-xl transition-all duration-300 relative overflow-hidden group border-l-4 border-transparent hover:border-red-600 flex flex-col">
-                
-                {{-- Image --}}
-                <div class="h-48 overflow-hidden relative">
-                    @if($portfolio->image)
-                        <img src="{{ asset($portfolio->image) }}" alt="{{ $portfolio->title }}" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    @else
-                        <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">No Image</div>
-                    @endif
-                </div>
-
-                <div class="p-8 flex-grow flex flex-col">
-                    {{-- Tags --}}
-                    <div class="flex space-x-2 mb-4">
-                        <span class="bg-[#1e293b] text-white text-xs px-3 py-1 rounded-md">
-                            {{ $portfolio->year }}
-                        </span>
-                        <span class="bg-[#1e293b] text-white text-xs px-3 py-1 rounded-md">
-                            {{ $portfolio->status }}
-                        </span>
+            <a href="{{ route('portfolio.detail', $portfolio->id) }}" class="block text-inherit no-underline">
+                <x-cke.card interactive media="{{ $portfolio->image ? asset($portfolio->image) : asset('assets/web/logo/logo.png') }}" mediaHeight="200px" accent>
+                    
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                        <x-cke.badge tone="brand">{{ $portfolio->year }}</x-cke.badge>
+                        <x-cke.badge tone="green">{{ $portfolio->status }}</x-cke.badge>
                     </div>
 
-                    {{-- Title --}}
-                    <h3 class="text-xl font-bold text-gray-900 mb-4 leading-snug">
+                    <h3 class="cke-projects__title" style="font-size: var(--fs-lg); font-weight: var(--fw-bold); margin-bottom: 1rem; color: var(--cke-navy-700);">
                         {{ $portfolio->title }}
                     </h3>
 
-                    {{-- Client --}}
-                    <p class="text-xs text-gray-400 uppercase tracking-wide mb-6 mt-auto">
-                        {{ $portfolio->client }}
-                    </p>
-
-                    {{-- Read More --}}
-                    <div>
-                        <a href="{{ route('portfolio.detail', $portfolio->id) }}" class="inline-flex items-center text-red-600 font-semibold text-sm hover:underline">
-                            Read More 
-                            <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                            </svg>
-                        </a>
+                    <div class="cke-projects__meta" style="margin-bottom: 1rem;">
+                        <span>@include('web.partials.icon', ['name' => 'building-2', 'size' => 16]) {{ $portfolio->client }}</span>
                     </div>
-                </div>
-            </div>
+
+                    <span style="color: var(--color-primary); font-weight: var(--fw-semibold); font-size: var(--fs-sm); display: flex; align-items: center; gap: 4px;">
+                        Detail Proyek @include('web.partials.icon', ['name' => 'arrow-right', 'size' => 16])
+                    </span>
+                </x-cke.card>
+            </a>
         @endforeach
     </div>
 
     {{-- PAGINATION --}}
-    <div class="flex justify-center mt-6">
-        {{-- IMPORTANT: Use appends to keep query strings in the generated links if standard navigation, 
-           but since we use JS override, it's fine. 
-           However, standard 'pagination::tailwind' or custom? 
-           User liked the custom one. Use 'web.layouts.pagination' --}}
+    <div style="display: flex; justify-content: center; margin-top: 2.5rem;">
         {{ $portfolios->appends(request()->query())->links('web.layouts.pagination') }}
     </div>
 
 @else
-    <div class="text-center py-20 bg-gray-50 rounded-xl border border-dashed border-gray-300">
-        <p class="text-gray-500 text-lg">Tidak ada portofolio yang ditemukan.</p>
+    <div style="text-align: center; padding: 5rem 0; color: var(--text-muted); background: var(--surface-card); border-radius: var(--radius-xl); border: 2px dashed var(--border-subtle);">
+        <p style="font-size: var(--fs-xl);">Tidak ada portofolio yang ditemukan.</p>
     </div>
 @endif

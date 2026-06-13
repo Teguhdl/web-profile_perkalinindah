@@ -1,83 +1,45 @@
 @extends('web.layouts.master')
 
 @section('content')
-<section class="pt-[150px] pb-20 bg-white min-h-screen">
-    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+<section class="cke-section" style="padding-top: 120px;">
+    <div class="cke-container">
         
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-stretch">
+        <x-cke.section-header align="center" eyebrow="Nilai Perusahaan">
+            <x-slot name="title">Visi & <em>Misi</em></x-slot>
+        </x-cke.section-header>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 4rem;">
             
             {{-- VISI CARD --}}
-            <div class="md:col-span-2 bg-white rounded-[30px] border-[3px] border-red-600 p-10 shadow-[0_10px_30px_rgba(255,0,0,0.15)] flex flex-col items-center text-center hover:scale-[1.02] transition-transform duration-300">
-                <h2 class="text-5xl font-extrabold text-black mb-6 relative inline-block">
-                    VISI
-                    {{-- Underline decoration --}}
-                    <span class="block w-full h-[2px] bg-gray-200 mt-4 mx-auto"></span>
-                </h2>
-                
-                <div class="text-lg md:text-xl text-gray-800 leading-relaxed font-medium prose prose-red max-w-none text-center">
+            <x-cke.card accent padded elevation="raised" style="border-top: 4px solid var(--color-primary);">
+                <h2 style="font-family: var(--font-display); font-size: var(--fs-3xl); font-weight: var(--fw-black); color: var(--color-primary); margin-bottom: 1.5rem; text-align: center;">VISI</h2>
+                <div id="visi-content" class="cke-about__p text-justify">
                     @if(!empty($page_visi_content))
                         {!! $page_visi_content !!}
                     @else
-                    Menjadi <span class="text-red-600 font-bold">one stops solution</span> bagi perusahaan manufaktur yang kompetitif, berkualitas, berkompetensi, handal, inovatif dan berdaya saing serta mampu berkembang <span class="text-red-600 font-bold">sehat</span> dan <span class="text-red-600 font-bold">mandiri</span>.
+                        Menjadi <strong>one stops solution</strong> bagi perusahaan manufaktur yang kompetitif, berkualitas, berkompetensi, handal, inovatif dan berdaya saing serta mampu berkembang <strong>sehat</strong> dan <strong>mandiri</strong>.
                     @endif
                 </div>
-            </div>
+            </x-cke.card>
 
             {{-- MISI CARD --}}
-            <div class="md:col-span-3 bg-white rounded-[30px] border border-gray-200 p-10 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div class="text-center mb-6">
-                    <h2 class="text-5xl font-extrabold text-black relative inline-block">
-                        MISI
-                        {{-- Underline decoration --}}
-                        <span class="block w-full h-[2px] bg-gray-200 mt-4 mx-auto"></span>
-                    </h2>
-                </div>
-
-                @if(!empty($page_misi_content))
-                    <div class="prose prose-red max-w-none text-gray-800 text-base md:text-lg text-left">
+            <x-cke.card padded elevation="raised">
+                <h2 style="font-family: var(--font-display); font-size: var(--fs-3xl); font-weight: var(--fw-black); color: var(--text-strong); margin-bottom: 1.5rem; text-align: center;">MISI</h2>
+                <div id="misi-content" class="cke-about__p">
+                    @if(!empty($page_misi_content))
                         {!! $page_misi_content !!}
-                    </div>
-                @else
-                <ul class="space-y-4 text-gray-800 text-base md:text-lg text-left list-none">
-                    <li class="flex items-start">
-                        <span class="mr-3 mt-2 w-1.5 h-1.5 bg-black rounded-full flex-shrink-0"></span>
-                        <span>
-                            Menjadi perusahaan yang memiliki produk yang <span class="text-red-600 font-bold">berkembang</span> dan <span class="text-red-600 font-bold">bervariasi</span> sesuai dengan kebutuhan dan permintaan konsumen.
-                        </span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="mr-3 mt-2 w-1.5 h-1.5 bg-black rounded-full flex-shrink-0"></span>
-                        <span>
-                            Menjadi perusahaan yang memiliki daya saing dengan memberikan <span class="text-red-600 font-bold">harga terbaik</span> dengan <span class="text-red-600 font-bold">kualitas terbaik</span>.
-                        </span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="mr-3 mt-2 w-1.5 h-1.5 bg-black rounded-full flex-shrink-0"></span>
-                        <span>
-                            Mengutamakan mutu, keselamatan kerja, dan keandalan pelayanan untuk <span class="text-red-600 font-bold">kepuasan pelanggan</span> dan mitra kerja.
-                        </span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="mr-3 mt-2 w-1.5 h-1.5 bg-black rounded-full flex-shrink-0"></span>
-                        <span>
-                            Proses pengiriman yang <span class="text-red-600 font-bold">cepat</span> dan <span class="text-red-600 font-bold">efisien</span> bagi partner.
-                        </span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="mr-3 mt-2 w-1.5 h-1.5 bg-black rounded-full flex-shrink-0"></span>
-                        <span>
-                            Menciptakan peluang dan nilai tambah bagi stakeholder melalui <span class="text-red-600 font-bold">inovasi</span> dan <span class="text-red-600 font-bold">teknologi</span>.
-                        </span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="mr-3 mt-2 w-1.5 h-1.5 bg-black rounded-full flex-shrink-0"></span>
-                        <span>
-                            Membangun <span class="text-red-600 font-bold">sumber daya manusia unggul</span> untuk berprestasi, berkreasi, dan tumbuh bersama berlandaskan nilai-nilai budaya PT Perkalin Indah.
-                        </span>
-                    </li>
-                </ul>
-                @endif
-            </div>
+                    @else
+                    <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem;">
+                        <li style="display: flex; gap: 1rem;"><span style="color: var(--color-primary);">@include('web.partials.icon', ['name' => 'check', 'size' => 20])</span> <span>Menjadi perusahaan yang memiliki produk yang <strong>berkembang</strong> dan <strong>bervariasi</strong> sesuai dengan kebutuhan dan permintaan konsumen.</span></li>
+                        <li style="display: flex; gap: 1rem;"><span style="color: var(--color-primary);">@include('web.partials.icon', ['name' => 'check', 'size' => 20])</span> <span>Menjadi perusahaan yang memiliki daya saing dengan memberikan <strong>harga terbaik</strong> dengan <strong>kualitas terbaik</strong>.</span></li>
+                        <li style="display: flex; gap: 1rem;"><span style="color: var(--color-primary);">@include('web.partials.icon', ['name' => 'check', 'size' => 20])</span> <span>Mengutamakan mutu, keselamatan kerja, dan keandalan pelayanan untuk <strong>kepuasan pelanggan</strong> dan mitra kerja.</span></li>
+                        <li style="display: flex; gap: 1rem;"><span style="color: var(--color-primary);">@include('web.partials.icon', ['name' => 'check', 'size' => 20])</span> <span>Proses pengiriman yang <strong>cepat</strong> dan <strong>efisien</strong> bagi partner.</span></li>
+                        <li style="display: flex; gap: 1rem;"><span style="color: var(--color-primary);">@include('web.partials.icon', ['name' => 'check', 'size' => 20])</span> <span>Menciptakan peluang dan nilai tambah bagi stakeholder melalui <strong>inovasi</strong> dan <strong>teknologi</strong>.</span></li>
+                        <li style="display: flex; gap: 1rem;"><span style="color: var(--color-primary);">@include('web.partials.icon', ['name' => 'check', 'size' => 20])</span> <span>Membangun <strong>sumber daya manusia unggul</strong> untuk berprestasi, berkreasi, dan tumbuh bersama berlandaskan nilai-nilai budaya PT Perkalin Indah.</span></li>
+                    </ul>
+                    @endif
+                </div>
+            </x-cke.card>
 
         </div>
 

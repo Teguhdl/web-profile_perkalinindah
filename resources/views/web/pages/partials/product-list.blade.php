@@ -1,49 +1,29 @@
 @if($products->count() > 0)
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-12">
+    <div class="cke-services__grid" style="margin-bottom: 3rem;">
         @foreach($products as $product)
-        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col h-full">
-            {{-- Image --}}
-            <div class="h-64 overflow-hidden relative group">
-                @if($product->image)
-                    <img src="{{ asset($product->image) }}" loading="lazy" 
-                         alt="{{ $product->title }}" 
-                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                @else
-                    <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
-                        No Image
-                    </div>
-                @endif
-                {{-- Red Left Border Accent on Hover --}}
-                <div class="absolute left-0 top-0 h-full w-2 bg-red-600 transform -translate-x-2 group-hover:translate-x-0 transition-transform duration-300"></div>
-            </div>
-
-            {{-- Content --}}
-            <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-xl font-bold text-gray-900 mb-2">{{ $product->title }}</h3>
-                <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
-                    {{ $product->content }}
-                </p>
-                
-                <div class="mt-auto">
-                    <a href="{{ route('product.detail', $product->slug) }}" class="inline-flex items-center text-red-600 font-semibold hover:text-red-800 transition-colors">
-                        Read More 
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
+            <a href="{{ route('product.detail', $product->slug) }}" class="block text-inherit no-underline">
+                <x-cke.card interactive media="{{ $product->image ? asset($product->image) : (!empty($settings['system_logo']) ? asset($settings['system_logo']) : asset('assets/web/logo/logo.png')) }}" mediaHeight="200px" accent>
+                    <h3 style="font-size: var(--fs-lg); font-weight: var(--fw-bold); color: var(--cke-navy-700); margin-bottom: 0.5rem;">
+                        {{ $product->title }}
+                    </h3>
+                    <p style="font-size: var(--fs-sm); color: var(--text-muted); line-height: 1.5; margin-bottom: 1rem; height: 4.5em; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                        {{ \Illuminate\Support\Str::limit(strip_tags($product->content), 100) }}
+                    </p>
+                    <span style="color: var(--color-primary); font-weight: var(--fw-semibold); font-size: var(--fs-sm); display: flex; align-items: center; gap: 4px; margin-top: auto;">
+                        Lihat Detail @include('web.partials.icon', ['name' => 'arrow-right', 'size' => 16])
+                    </span>
+                </x-cke.card>
+            </a>
         @endforeach
     </div>
 
     {{-- PAGINATION --}}
-    <div class="flex justify-center mt-10">
+    <div style="display: flex; justify-content: center; margin-top: 2.5rem;">
         {{ $products->links('web.layouts.pagination') }}
     </div>
 
 @else
-    <div class="text-center py-20">
-        <p class="text-gray-500 text-xl">Tidak ada produk yang ditemukan.</p>
+    <div style="text-align: center; padding: 5rem 0; color: var(--text-muted);">
+        <p style="font-size: var(--fs-xl);">Tidak ada produk yang ditemukan.</p>
     </div>
 @endif

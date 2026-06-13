@@ -1,58 +1,50 @@
 @extends('web.layouts.master')
 
 @section('content')
-<section class="pt-[150px] pb-20 bg-white min-h-screen">
-    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+<section class="cke-section" style="padding-top: 120px; min-height: 100vh;">
+    <div class="cke-container">
         
-        {{-- BACK BUTTON --}}
-        <div class="mb-10">
-            <a href="{{ url('/produk') }}" class="inline-flex items-center text-black font-medium hover:text-gray-600 transition">
-                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-                </svg>
-                Back
-            </a>
-        </div>
+        <x-cke.button variant="ghost" href="{{ url('produk') }}" iconLeft="arrow-right" style="margin-bottom: 2rem; transform: scaleX(-1); display: inline-flex;"><span style="transform: scaleX(-1);">Kembali ke Produk</span></x-cke.button>
 
-        {{-- MAIN CARD --}}
-        <div class="bg-white rounded-[30px] border border-gray-200 shadow-[0_10px_30px_rgba(0,0,0,0.05)] p-8 md:p-12">
-            
-            {{-- TITLE --}}
-            <h1 class="text-4xl md:text-5xl font-extrabold text-black mb-8 relative inline-block">
-                {{ $product->title }}
-                <div class="absolute bottom-[-10px] left-0 w-full h-[2px] bg-black"></div>
-            </h1>
-
-            {{-- DESCRIPTION --}}
-            <div class="text-gray-600 text-lg leading-relaxed text-justify mb-10">
-                <p>
-                    {{ $product->content }}
-                </p>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 3rem;">
+            <div style="width: 100%; height: 400px; border-radius: var(--radius-lg); overflow: hidden; background: var(--surface-card); box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: center;">
+                <img src="{{ $product->image ? asset($product->image) : (!empty($settings['system_logo']) ? asset($settings['system_logo']) : asset('assets/web/logo/logo.png')) }}" alt="{{ $product->title }}" 
+                     style="width: 100%; height: 100%; {{ $product->image ? 'object-fit: cover;' : 'object-fit: contain; padding: 3rem; background: #fafafa;' }}">
             </div>
 
-            {{-- GALLERY GRID --}}
-            @if($product->images->count() > 0)
-                <div class="mb-10">
-                    <h3 class="text-2xl font-bold mb-4">Galeri Produk</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        @foreach($product->images as $img)
-                            <div class="rounded-lg overflow-hidden shadow-sm group">
-                                <img src="{{ asset($img->image_path) }}" class="w-full h-48 card-image-cover object-cover transition-transform duration-300 group-hover:scale-105" alt="Gallery {{ $product->title }}">
-                            </div>
-                        @endforeach
-                    </div>
+            <div>
+                <x-cke.badge tone="brand" style="margin-bottom: 1rem;">Produk Kami</x-cke.badge>
+                <h1 style="font-family: var(--font-display); font-weight: var(--fw-black); font-size: var(--fs-4xl); color: var(--text-strong); margin-bottom: 1.5rem;">{{ $product->title }}</h1>
+                
+                <div class="cke-about__p prose prose-red max-w-none text-justify" style="margin-bottom: 2rem;">
+                    {!! $product->content !!}
                 </div>
-            @endif
 
-            {{-- CTA BUTTON --}}
-            <div class="mt-8">
-                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20produk%20{{ urlencode($product->title) }}" 
-                   target="_blank"
-                   class="block w-full bg-red-600 hover:bg-red-700 text-white text-center font-bold py-4 rounded-full text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
-                    Pesan Sekarang!
-                </a>
+                {{-- GALLERY GRID --}}
+                @if($product->images->count() > 0)
+                    <div style="margin-top: 3rem; margin-bottom: 3rem;">
+                        <h3 style="font-family: var(--font-display); font-weight: var(--fw-bold); font-size: var(--fs-xl); color: var(--text-strong); margin-bottom: 1rem;">Galeri Produk</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                            @foreach($product->images as $img)
+                                <div style="border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); height: 150px;">
+                                    <img src="{{ asset($img->image_path) }}" alt="Gallery {{ $product->title }}" style="width: 100%; height: 100%; object-fit: cover; transition: transform var(--dur-fast);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+                
+                @php
+                    $phoneSetting = $settings['contact_phone'] ?? '6281234567890';
+                    $waNumber = preg_replace('/[^0-9]/', '', $phoneSetting);
+                    if (str_starts_with($waNumber, '0')) {
+                        $waNumber = '62' . substr($waNumber, 1);
+                    }
+                @endphp
+                <div style="margin-top: 3rem;">
+                    <x-cke.button variant="primary" href="https://wa.me/{{ $waNumber }}?text=Halo,%20saya%20tertarik%20dengan%20produk%20{{ urlencode($product->title) }}" target="_blank" block size="lg" iconRight="send">Pesan Sekarang!</x-cke.button>
+                </div>
             </div>
-
         </div>
 
     </div>
@@ -65,7 +57,7 @@
   "@context": "https://schema.org/", 
   "@type": "Product", 
   "name": "{{ $product->title }}",
-  "image": "{{ asset($product->image ?? 'assets/web/logo.png') }}",
+   "image": "{{ $product->image ? asset($product->image) : (!empty($settings['system_logo']) ? asset($settings['system_logo']) : asset('assets/web/logo/logo.png')) }}",
   "description": "{{ \Illuminate\Support\Str::limit(strip_tags($product->content), 160) }}",
   "brand": {
     "@type": "Brand",

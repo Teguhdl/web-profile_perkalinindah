@@ -1,26 +1,31 @@
 @extends('web.layouts.master')
 
 @section('content')
-<section class="pt-[150px] pb-20 bg-white min-h-screen">
-    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+<section class="cke-section" style="padding-top: 120px; min-height: 100vh;">
+    <div class="cke-container">
         
-        {{-- HEADER --}}
-        <div class="text-center mb-16">
-            <h1 class="text-5xl font-extrabold text-black">Mitra</h1>
-            {{-- Optional Subtext if needed --}}
-            {{-- <p class="text-gray-500 mt-4">Partner Terpercaya Kami</p> --}}
-        </div>
+        <x-cke.section-header align="center" eyebrow="Klien Kami">
+            <x-slot name="title">Mitra & <em>Kerja Sama</em></x-slot>
+        </x-cke.section-header>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-12 gap-y-16 items-center justify-items-center">
+        <div style="margin-top: 4rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 2rem;">
             @foreach($mitras as $mitra)
-                <div class="w-full h-24 flex items-center justify-center p-4 transition-transform duration-300 hover:scale-105 group" title="{{ $mitra->name }}">
-                    <img src="{{ asset($mitra->logo) }}" loading="lazy" 
-                         alt="{{ $mitra->name }}" 
-                         class="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100">
+                <div class="cke-card cke-card--pad cke-card--raised" style="display: flex; align-items: center; justify-content: center; height: 120px; transition: transform 0.3s; cursor: pointer;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" title="{{ $mitra->name }}">
+                    <img src="{{ asset($mitra->logo) }}" alt="{{ $mitra->name }}" style="max-width: 100%; max-height: 100%; object-fit: contain; filter: grayscale(100%); transition: filter 0.3s;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
                 </div>
             @endforeach
         </div>
 
+    </div>
+</section>
+
+<!-- Stats Strip -->
+<section class="cke-stats" style="margin-top: 5rem;">
+    <div class="cke-container cke-stats__row">
+        <x-cke.stat value="100" suffix="+" label="Proyek Selesai" onDark />
+        <x-cke.stat value="50" suffix="+" label="Tahun Pengalaman" onDark />
+        <x-cke.stat value="4" label="Kategori Produk" onDark />
+        <x-cke.stat value="100" suffix="%" label="Komitmen K3" onDark />
     </div>
 </section>
 @endsection

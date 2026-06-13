@@ -118,6 +118,27 @@
                 </div>
             </div>
 
+            <hr class="border-gray-100 my-8">
+
+            <h3 class="text-lg font-bold text-gray-900 mb-4">Integration & Location</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                     <label class="block text-sm font-semibold text-gray-700 mb-2">Google Analytics Measurement ID</label>
+                     <input type="text" name="google_analytics_id" value="{{ $settings['google_analytics_id'] ?? '' }}" class="w-full bg-gray-50 border-gray-100 rounded-lg px-4 py-3 text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors" placeholder="e.g. G-XXXXXXXXXX">
+                     <p class="mt-2 text-xs text-gray-400">Sematkan Google Analytics ID untuk melacak kunjungan secara otomatis.</p>
+                </div>
+                 <div>
+                     <label class="block text-sm font-semibold text-gray-700 mb-2">Google Maps Embed URL / Iframe</label>
+                     <textarea name="google_maps_embed" rows="3" class="w-full bg-gray-50 border-gray-100 rounded-lg px-4 py-3 text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors" placeholder="https://www.google.com/maps/embed?... atau paste seluruh tag iframe">{{ $settings['google_maps_embed'] ?? '' }}</textarea>
+                     <p class="mt-2 text-xs text-gray-400 leading-relaxed">
+                         <strong>Cara mendapatkan kode peta:</strong><br>
+                         1. Buka <a href="https://maps.google.com" target="_blank" class="text-red-600 hover:underline font-semibold">Google Maps</a> dan cari lokasi Anda.<br>
+                         2. Klik tombol <strong>"Bagikan" (Share)</strong> -> pilih tab <strong>"Sematkan peta" (Embed a map)</strong>.<br>
+                         3. Klik <strong>"Salin HTML" (Copy HTML)</strong> lalu paste kodenya ke kolom di atas.
+                     </p>
+                </div>
+            </div>
+
             <div class="flex pt-4">
                  <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-red-200 transform transition hover:-translate-y-0.5 flex items-center gap-2">
                     <span class="material-symbols-outlined">save</span>

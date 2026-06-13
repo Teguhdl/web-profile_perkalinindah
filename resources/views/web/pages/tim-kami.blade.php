@@ -1,39 +1,36 @@
 @extends('web.layouts.master')
 
 @section('content')
-<section class="pt-[150px] pb-20 bg-white min-h-screen">
-    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+<section class="cke-section" style="padding-top: 120px;">
+    <div class="cke-container">
         
-        {{-- HEADER --}}
-        <div class="text-center mb-10">
-            <h1 class="text-4xl font-extrabold text-black mb-4">Tim Kami</h1>
-            <p class="text-gray-600 text-lg">Struktur Organisasi PT. Perkalin Indah</p>
-        </div>
+        <x-cke.section-header align="center" eyebrow="Tim Kami" subtitle="Struktur Organisasi PT. Perkalin Indah">
+            <x-slot name="title">Kenali <em>Tim</em> Kami</x-slot>
+        </x-cke.section-header>
 
-        {{-- PDF VIEWER --}}
-        <div class="bg-gray-100 rounded-[20px] p-4 shadow-sm border border-gray-200">
-            <div class="w-full h-[800px] bg-white rounded-lg overflow-hidden relative">
-                @php
-                    $pdfPath = !empty($page_team_pdf) ? asset($page_team_pdf) : asset('assets/web/STRUKTUR ORGANISASI.pdf');
-                @endphp
-                <object data="{{ $pdfPath }}" type="application/pdf" width="100%" height="100%">
-                    <div class="flex flex-col items-center justify-center h-full space-y-4">
-                        <p class="text-gray-600 text-lg">Browser Anda tidak mendukung preview PDF.</p>
-                        <a href="{{ $pdfPath }}" 
-                           class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:-translate-y-1">
-                            Download Struktur Organisasi (PDF)
-                        </a>
-                    </div>
-                </object>
+        <div style="margin-top: 3rem;">
+            <div class="cke-card cke-card--pad cke-card--raised">
+                <div style="width: 100%; height: 800px; background: var(--surface-card); border-radius: var(--radius-md); overflow: hidden; position: relative;">
+                    @php
+                        $pdfPath = !empty($page_team_pdf) ? asset($page_team_pdf) : asset('assets/web/STRUKTUR ORGANISASI.pdf');
+                    @endphp
+                    <object data="{{ $pdfPath }}" type="application/pdf" width="100%" height="100%">
+                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 1rem;">
+                            <p class="cke-about__p">Browser Anda tidak mendukung preview PDF.</p>
+                            <x-cke.button variant="primary" href="{{ $pdfPath }}">Download Struktur Organisasi (PDF)</x-cke.button>
+                        </div>
+                    </object>
+                </div>
             </div>
-        </div>
-
-        {{-- MOBILE DOWNLOAD BUTTON (Usually PDF viewers on mobile are native, but good to have explicit button too) --}}
-        <div class="mt-8 text-center md:hidden">
-             <a href="{{ $pdfPath }}" 
-               class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:-translate-y-1">
-                Download PDF
-            </a>
+            
+            <div style="margin-top: 2rem; text-align: center; display: none;" class="mobile-pdf-btn">
+                <x-cke.button variant="primary" href="{{ $pdfPath }}">Download PDF</x-cke.button>
+            </div>
+            <style>
+                @media (max-width: 768px) {
+                    .mobile-pdf-btn { display: block !important; }
+                }
+            </style>
         </div>
 
     </div>

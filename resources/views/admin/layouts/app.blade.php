@@ -95,6 +95,16 @@
                     <span class="material-symbols-outlined">article</span>
                     Kelola Halaman
                 </a>
+
+                <a href="{{ route('admin.pages.index') }}" class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-colors {{ request()->routeIs('admin.pages.*') ? 'bg-red-50 text-red-600' : 'text-gray-500 hover:bg-gray-50 hover:text-red-600' }}">
+                    <span class="material-symbols-outlined">edit_note</span>
+                    Halaman Kustom
+                </a>
+
+                <a href="{{ route('admin.media.index') }}" class="flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-xl transition-colors {{ request()->routeIs('admin.media.*') ? 'bg-red-50 text-red-600' : 'text-gray-500 hover:bg-gray-50 hover:text-red-600' }}">
+                    <span class="material-symbols-outlined">perm_media</span>
+                    Media Library
+                </a>
                 @endif
 
                 

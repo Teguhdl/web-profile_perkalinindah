@@ -1,0 +1,9 @@
+/* ============================================================
+   CIPTA KRIYA ENGINEERING — WEBFONTS
+   Display : Archivo  (sturdy industrial grotesque, headlines)
+   Body    : IBM Plex Sans (technical, neutral, readable)
+   Mono    : IBM Plex Mono (specs, codes, data labels)
+   Loaded from Google Fonts CDN. See README for self-host note.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');

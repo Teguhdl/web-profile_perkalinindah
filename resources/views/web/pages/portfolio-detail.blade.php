@@ -1,59 +1,50 @@
 @extends('web.layouts.master')
 
 @section('content')
-<section class="pt-[150px] pb-20 bg-white min-h-screen">
-    <div class="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-24">
+<section class="cke-section" style="padding-top: 120px; min-height: 100vh;">
+    <div class="cke-container">
         
         {{-- BACK BUTTON --}}
-        <div class="mb-10">
-            <a href="{{ url('/portofolio') }}" class="inline-flex items-center text-black font-medium hover:text-gray-600 transition">
-                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-                </svg>
-                Kembali ke Portofolio
-            </a>
-        </div>
+        <x-cke.button variant="ghost" href="{{ url('/portofolio') }}" iconLeft="arrow-right" style="margin-bottom: 2rem; transform: scaleX(-1); display: inline-flex;"><span style="transform: scaleX(-1);">Kembali ke Portofolio</span></x-cke.button>
 
         {{-- MAIN CARD --}}
-        <div class="bg-white rounded-[30px] border border-gray-200 shadow-[0_10px_30px_rgba(0,0,0,0.05)] p-8 md:p-12">
+        <div class="cke-card cke-card--pad cke-card--raised" style="border: 1px solid var(--border-subtle);">
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
                 {{-- LEFT: IMAGE --}}
-                <div class="rounded-2xl overflow-hidden shadow-lg h-[400px]">
+                <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); height: 400px; background: var(--surface-default);">
                     @if($portfolio->image)
-                        <img src="{{ asset($portfolio->image) }}" class="w-full h-full object-cover" alt="{{ $portfolio->title }}">
+                        <img src="{{ asset($portfolio->image) }}" style="width: 100%; height: 100%; object-fit: cover;" alt="{{ $portfolio->title }}">
                     @else
-                        <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">No Image</div>
+                        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: var(--fs-sm);">No Image</div>
                     @endif
                 </div>
 
                 {{-- RIGHT: INFO --}}
                 <div>
                     {{-- TITLE --}}
-                    <h1 class="text-3xl md:text-4xl font-extrabold text-black mb-6 relative leading-tight">
+                    <h1 style="font-family: var(--font-display); font-weight: var(--fw-black); font-size: var(--fs-3xl); color: var(--text-strong); margin-bottom: 1.5rem; line-height: 1.2;">
                         {{ $portfolio->title }}
                     </h1>
 
                     {{-- METADATA --}}
-                    <div class="grid grid-cols-2 gap-6 mb-8">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
                         <div>
-                            <p class="text-xs text-gray-500 uppercase tracking-wide font-semibold">Klien</p>
-                            <p class="text-lg font-medium text-gray-900">{{ $portfolio->client ?? '-' }}</p>
+                            <p style="font-size: var(--fs-xs); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: var(--fw-semibold); margin-bottom: 0.25rem;">Klien</p>
+                            <p style="font-size: var(--fs-base); font-weight: var(--fw-medium); color: var(--text-strong);">{{ $portfolio->client ?? '-' }}</p>
                         </div>
                         <div>
-                            <p class="text-xs text-gray-500 uppercase tracking-wide font-semibold">Tahun</p>
-                            <p class="text-lg font-medium text-gray-900">{{ $portfolio->year ?? '-' }}</p>
+                            <p style="font-size: var(--fs-xs); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: var(--fw-semibold); margin-bottom: 0.25rem;">Tahun</p>
+                            <p style="font-size: var(--fs-base); font-weight: var(--fw-medium); color: var(--text-strong);">{{ $portfolio->year ?? '-' }}</p>
                         </div>
-                        <div>
-                            <p class="text-xs text-gray-500 uppercase tracking-wide font-semibold">Status</p>
-                            <span class="inline-block mt-1 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
-                                {{ $portfolio->status }}
-                            </span>
+                        <div style="grid-column: 1 / -1;">
+                            <p style="font-size: var(--fs-xs); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: var(--fw-semibold); margin-bottom: 0.5rem;">Status</p>
+                            <x-cke.badge tone="green">{{ $portfolio->status }}</x-cke.badge>
                         </div>
                     </div>
 
                     {{-- DESCRIPTION --}}
-                    <div class="prose prose-red text-gray-600 leading-relaxed text-justify">
+                    <div class="cke-about__p text-justify" style="border-top: 1px solid var(--border-subtle); padding-top: 1.5rem;">
                         <p>{!! nl2br(e($portfolio->description)) !!}</p>
                     </div>
                 </div>
