@@ -12,8 +12,9 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        // Bersihkan data lama agar bersih (opsional, hati-hati jika production)
+        \Schema::disableForeignKeyConstraints();
         \App\Models\Product::truncate();
+        \Schema::enableForeignKeyConstraints();
 
         $products = [
             [

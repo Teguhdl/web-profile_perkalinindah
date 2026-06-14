@@ -12,7 +12,9 @@ class PortfolioSeeder extends Seeder
      */
     public function run(): void
     {
+        \Schema::disableForeignKeyConstraints();
         \App\Models\Portfolio::truncate();
+        \Schema::enableForeignKeyConstraints();
 
         $data = [
             [
