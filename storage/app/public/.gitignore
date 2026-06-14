@@ -1,2 +1,10 @@
 *
 !.gitignore
+
+# Allow tracking of subdirectories so the folder structure is preserved on git clone/pull
+!media/
+!mitras/
+!pages/
+!products/
+!settings/
+!uploads/
