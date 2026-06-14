@@ -278,6 +278,15 @@
                                 <label>Subjudul / Deskripsi</label>
                                 <textarea id="in_hero_subtitle" name="dashboard_hero_subtitle" rows="3" placeholder="Tagline pendek pendukung">{{ $settings['dashboard_hero_subtitle'] ?? '' }}</textarea>
                             </div>
+                            <div class="vb-field">
+                                <label>Gambar Background Hero</label>
+                                <div class="vb-upload" onclick="document.getElementById('in_hero_image').click()">
+                                    <span class="material-symbols-outlined">add_photo_alternate</span>
+                                    <p>Ganti Gambar Background</p>
+                                    <p class="fname" id="fn_hero_image"></p>
+                                </div>
+                                <input type="file" id="in_hero_image" name="dashboard_hero_image" accept="image/*" style="display:none" onchange="VB.previewLocalImage(this, '.cke-hero__media', 'fn_hero_image')">
+                            </div>
                         </div>
 
                         <div class="vb-card">
@@ -724,6 +733,7 @@ const VB = {
                 });
 
                 const imgMaps = [
+                    { sel: '.cke-hero__media', inp: 'in_hero_image' },
                     { sel: '#tentang-img-1', inp: 'in_about_img1' },
                     { sel: '#tentang-img-2', inp: 'in_about_img2' }
                 ];

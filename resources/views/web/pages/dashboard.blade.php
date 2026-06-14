@@ -5,7 +5,7 @@
 @if($dashboard_show_hero ?? true)
 <!-- 1. Hero -->
 <section id="beranda" class="cke-hero">
-    <div class="cke-hero__media" style="background-image: url('{{ asset('assets/web/dashboard/dashboard.webp') }}')"></div>
+    <div class="cke-hero__media" style="background-image: url('{{ $dashboard_hero_image }}')"></div>
     <div class="cke-hero__scrim"></div>
     <div class="cke-hero__inner">
         <span class="cke-hero__eyebrow">{{ $settings['system_name'] ?? 'PT. Perkalin Indah' }} — Subang, Jawa Barat</span>

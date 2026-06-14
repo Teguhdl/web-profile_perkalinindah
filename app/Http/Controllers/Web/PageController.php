@@ -125,6 +125,7 @@ class PageController extends Controller
                 'page_about_content',
                 'dashboard_hero_title',
                 'dashboard_hero_subtitle',
+                'dashboard_hero_image',
                 'dashboard_about_image_1',
                 'dashboard_about_image_2',
                 'dashboard_video_title',
@@ -145,6 +146,7 @@ class PageController extends Controller
             $data['page_about_content']      = $settings['page_about_content']      ?? null;
             $data['dashboard_hero_title']    = $settings['dashboard_hero_title']    ?? 'PT. PERKALIN INDAH';
             $data['dashboard_hero_subtitle'] = $settings['dashboard_hero_subtitle'] ?? 'Provider Solution Rubber and Metal Part';
+            $data['dashboard_hero_image']    = isset($settings['dashboard_hero_image']) && !empty($settings['dashboard_hero_image']) ? asset($settings['dashboard_hero_image']) : asset('assets/web/dashboard/dashboard.webp');
             $data['dashboard_about_image_1'] = $settings['dashboard_about_image_1'] ?? 'assets/web/dashboard/about2.png';
             $data['dashboard_about_image_2'] = $settings['dashboard_about_image_2'] ?? 'assets/web/dashboard/about1.png';
             $data['dashboard_video_title']   = $settings['dashboard_video_title']   ?? 'Video Kami';

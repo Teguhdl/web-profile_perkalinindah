@@ -24,6 +24,7 @@ class PageSettingController extends Controller
             // Dashboard Specific
             'dashboard_hero_title',
             'dashboard_hero_subtitle',
+            'dashboard_hero_image',
             'dashboard_about_image_1',
             'dashboard_about_image_2',
             'dashboard_video_title',
@@ -139,6 +140,7 @@ class PageSettingController extends Controller
             '_method', 
             '_partial',
             'page_team_pdf',
+            'dashboard_hero_image',
             'dashboard_about_image_1',
             'dashboard_about_image_2',
             'dashboard_video_url',
@@ -179,6 +181,23 @@ class PageSettingController extends Controller
             Setting::updateOrCreate(
                 ['key' => 'page_team_pdf'],
                 ['value' => 'storage/uploads/pdf/' . $filename, 'type' => 'file']
+            );
+        }
+
+        // Handle Dashboard Hero Image
+        if ($request->hasFile('dashboard_hero_image')) {
+            $file = $request->file('dashboard_hero_image');
+            $filename = 'hero_' . time() . '.webp';
+            $this->uploadAndOptimizeToWebp($file, 'uploads/dashboard/' . $filename);
+            
+            $oldParams = Setting::where('key', 'dashboard_hero_image')->value('value');
+            if ($oldParams && Storage::disk('public')->exists(str_replace('storage/', '', $oldParams))) {
+                 Storage::disk('public')->delete(str_replace('storage/', '', $oldParams));
+            }
+
+            Setting::updateOrCreate(
+                ['key' => 'dashboard_hero_image'],
+                ['value' => 'storage/uploads/dashboard/' . $filename, 'type' => 'image']
             );
         }
 
@@ -262,6 +281,7 @@ class PageSettingController extends Controller
             'page_misi_content' => 'Misi',
             'dashboard_hero_title' => 'Judul Hero Dashboard',
             'dashboard_hero_subtitle' => 'Subjudul Hero',
+            'dashboard_hero_image' => 'Gambar Hero Banner',
             'page_about_content' => 'Tentang Kami (Dashboard)',
             'dashboard_about_image_1' => 'Gambar About 1',
             'dashboard_about_image_2' => 'Gambar About 2',
@@ -286,6 +306,10 @@ class PageSettingController extends Controller
 
         if ($request->hasFile('page_team_pdf')) {
             $updatedSections[] = $keyMap['page_team_pdf'];
+        }
+
+        if ($request->hasFile('dashboard_hero_image')) {
+            $updatedSections[] = $keyMap['dashboard_hero_image'];
         }
 
         $description = 'Memperbarui konten: ' . implode(', ', array_unique($updatedSections));
