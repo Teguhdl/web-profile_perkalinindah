@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
         // Auto-check and create/repair storage symlink for Hostinger/cPanel environment
         try {
             $link = public_path('storage');
-            $target = storage_path('app/public');
+            $target = env('PUBLIC_STORAGE_PATH', storage_path('app/public'));
             
             // If it's a broken symlink, delete it first so we can recreate it
             if (is_link($link) && !file_exists($link)) {
