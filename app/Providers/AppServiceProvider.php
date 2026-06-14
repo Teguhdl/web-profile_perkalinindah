@@ -29,15 +29,17 @@ class AppServiceProvider extends ServiceProvider
             
             // If it's a broken symlink, delete it first so we can recreate it
             if (is_link($link) && !file_exists($link)) {
-                @unlink($link);
+                if (function_exists('unlink')) {
+                    @unlink($link);
+                }
             }
             
-            // Create symlink if it does not exist
-            if (!file_exists($link)) {
+            // Create symlink if it does not exist and symlink function is available
+            if (!file_exists($link) && function_exists('symlink')) {
                 @symlink($target, $link);
             }
-        } catch (\Exception $e) {
-            // Silence any filesystem permission errors during local migrations or cli runs
+        } catch (\Throwable $e) {
+            // Silence any filesystem permission errors or disabled functions during local migrations or cli runs
         }
 
         try {
