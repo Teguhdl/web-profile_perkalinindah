@@ -313,6 +313,9 @@ class PageSettingController extends Controller
         }
 
         $description = 'Memperbarui konten: ' . implode(', ', array_unique($updatedSections));
+        if (strlen($description) > 255) {
+            $description = substr($description, 0, 252) . '...';
+        }
 
         // Log Activity
         ActivityLog::create([
