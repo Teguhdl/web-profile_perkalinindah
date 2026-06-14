@@ -1,5 +1,10 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <!-- Favicon / Logo Browser -->
+    <link rel="icon" type="image/png" href="{{ asset($settings['system_logo'] ?? 'assets/web/logo/logo.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset($settings['system_logo'] ?? 'assets/web/logo/logo.png') }}">
+
     @if(!empty($settings['google_analytics_id']))
     <!-- Google Tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ $settings['google_analytics_id'] }}"></script>
