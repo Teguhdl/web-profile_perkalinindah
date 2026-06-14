@@ -611,6 +611,13 @@
     <span id="vb-toast-msg">Tersimpan</span>
 </div>
 
+{{-- Fullscreen Submit Loader --}}
+<div id="vb-submit-loader" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65); z-index: 99999; flex-direction: column; align-items: center; justify-content: center; gap: 14px; backdrop-filter: blur(4px);">
+    <div style="width: 44px; height: 44px; border: 3px solid rgba(255,255,255,0.3); border-top-color: #ef4444; border-radius: 50%; animation: vbSpin .8s linear infinite;"></div>
+    <div style="font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 1.5px; text-transform: uppercase;">Menyimpan & Mengunggah Konten...</div>
+    <div style="font-size: 11px; color: rgba(255,255,255,0.7);">Mohon tunggu beberapa saat, jangan menutup halaman.</div>
+</div>
+
 {{-- ============ Summernote ============ --}}
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -975,6 +982,15 @@ const VB = {
 
     previewLocalImage(input, selector, fnameId) {
         if (!input.files || !input.files[0]) return;
+
+        // Limit local image selection to 3MB
+        if (input.files[0].size > 3 * 1024 * 1024) {
+            alert('Ukuran file gambar terlalu besar. Maksimal 3MB.');
+            input.value = ''; // Reset input
+            if (fnameId) document.getElementById(fnameId).textContent = '';
+            return;
+        }
+
         if (fnameId) document.getElementById(fnameId).textContent = '✓ ' + input.files[0].name;
         const reader = new FileReader();
         reader.onload = e => {
@@ -1006,13 +1022,44 @@ const VB = {
     }
 };
 
-// Filename displays
+// Filename displays & File size validation
 document.getElementById('in_pdf_file').addEventListener('change', function() {
-    if (this.files && this.files[0]) document.getElementById('fn_pdf').textContent = '✓ ' + this.files[0].name;
+    if (this.files && this.files[0]) {
+        // Limit PDF to 10MB
+        if (this.files[0].size > 10 * 1024 * 1024) {
+            alert('Ukuran file PDF terlalu besar. Maksimal 10MB.');
+            this.value = ''; // Reset
+            document.getElementById('fn_pdf').textContent = '';
+            return;
+        }
+        document.getElementById('fn_pdf').textContent = '✓ ' + this.files[0].name;
+    }
 });
+
 document.getElementById('in_video_file').addEventListener('change', function() {
-    if (this.files && this.files[0]) document.getElementById('fn_video').textContent = '✓ ' + this.files[0].name;
+    if (this.files && this.files[0]) {
+        // Limit Video to 20MB
+        if (this.files[0].size > 20 * 1024 * 1024) {
+            alert('Ukuran file video terlalu besar. Maksimal 20MB.');
+            this.value = ''; // Reset
+            document.getElementById('fn_video').textContent = '';
+            return;
+        }
+        document.getElementById('fn_video').textContent = '✓ ' + this.files[0].name;
+    }
 });
+
+// Fullscreen submit loader on publish
+document.getElementById('vb-form').addEventListener('submit', function() {
+    document.getElementById('vb-submit-loader').style.display = 'flex';
+});
+
+// Keep Laravel session alive (heartbeat) every 5 minutes to prevent CSRF expiration (419 Page Expired)
+setInterval(() => {
+    fetch('{{ route('admin.dashboard') }}', {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    }).catch(e => console.log('Session ping failed', e));
+}, 5 * 60 * 1000);
 
 // Summernote
 $(document).ready(function() {
@@ -1051,6 +1098,11 @@ $(document).ready(function() {
 });
 
 function uploadImage(file, editor) {
+    // Limit Summernote inline image uploads to 2MB
+    if (file.size > 2 * 1024 * 1024) {
+        alert('Ukuran file gambar terlalu besar. Maksimal 2MB.');
+        return;
+    }
     var data = new FormData();
     data.append("file", file);
     data.append("_token", "{{ csrf_token() }}");
