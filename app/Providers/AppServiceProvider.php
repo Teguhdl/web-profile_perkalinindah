@@ -27,10 +27,13 @@ class AppServiceProvider extends ServiceProvider
             $link = public_path('storage');
             $target = env('PUBLIC_STORAGE_PATH', storage_path('app/public'));
             
-            // If it's a broken symlink, delete it first so we can recreate it
-            if (is_link($link) && !file_exists($link)) {
-                if (function_exists('unlink')) {
-                    @unlink($link);
+            // If it's a symlink, check if it points to the correct target or is broken
+            if (is_link($link)) {
+                $currentTarget = function_exists('readlink') ? @readlink($link) : null;
+                if ($currentTarget !== $target || !file_exists($link)) {
+                    if (function_exists('unlink')) {
+                        @unlink($link);
+                    }
                 }
             }
             
