@@ -1,5 +1,6 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="google-site-verification" content="UwRsNHd2AjSapOAnKySlIC6GzVWWcS2jpfEwyYH4xyc" />
  
     <!-- Favicon / Logo Browser -->
     <link rel="icon" type="image/png" href="{{ asset($settings['system_logo'] ?? 'assets/web/logo/logo.png') }}">
