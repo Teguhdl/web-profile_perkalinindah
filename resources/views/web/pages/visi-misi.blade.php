@@ -11,7 +11,7 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 4rem;">
             
             {{-- VISI CARD --}}
-            <x-cke.card accent padded elevation="raised" style="border-top: 4px solid var(--color-primary);">
+            <x-cke.card padded elevation="raised">
                 <h2 style="font-family: var(--font-display); font-size: var(--fs-3xl); font-weight: var(--fw-black); color: var(--color-primary); margin-bottom: 1.5rem; text-align: center;">VISI</h2>
                 <div id="visi-content" class="cke-about__p text-justify">
                     @if(!empty($page_visi_content))
