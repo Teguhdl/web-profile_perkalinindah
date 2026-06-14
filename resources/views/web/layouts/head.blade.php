@@ -2,6 +2,11 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta name="google-site-verification" content="UwRsNHd2AjSapOAnKySlIC6GzVWWcS2jpfEwyYH4xyc" />
  
+    @if(str_contains(request()->getHost(), 'teguhdl.com') || config('app.env') !== 'production')
+        <!-- Block indexing on staging / development server -->
+        <meta name="robots" content="noindex, nofollow" />
+    @endif
+
     <!-- Favicon / Logo Browser -->
     <link rel="icon" type="image/png" href="{{ asset($settings['system_logo'] ?? 'assets/web/logo/logo.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset($settings['system_logo'] ?? 'assets/web/logo/logo.png') }}">

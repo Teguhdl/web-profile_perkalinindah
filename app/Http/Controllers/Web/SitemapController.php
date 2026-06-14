@@ -128,30 +128,37 @@ class SitemapController extends Controller
      */
     public function robots()
     {
-        $lines = [
-            'User-agent: *',
-            'Allow: /',
-            '',
-            '# Block admin & sensitive paths',
-            'Disallow: /admin',
-            'Disallow: /admin/*',
-            'Disallow: /login',
-            'Disallow: /logout',
-            'Disallow: /storage/logs',
-            'Disallow: /vendor',
-            'Disallow: /node_modules',
-            '',
-            '# Block search/filter URLs to prevent duplicate content',
-            'Disallow: /*?search=',
-            'Disallow: /*?year=',
-            'Disallow: /*?client=',
-            '',
-            '# AI/Scraper bots (optional - uncomment if needed)',
-            '# User-agent: GPTBot',
-            '# Disallow: /',
-            '',
-            'Sitemap: ' . url('/sitemap.xml'),
-        ];
+        if (str_contains(request()->getHost(), 'teguhdl.com') || config('app.env') !== 'production') {
+            $lines = [
+                'User-agent: *',
+                'Disallow: /',
+            ];
+        } else {
+            $lines = [
+                'User-agent: *',
+                'Allow: /',
+                '',
+                '# Block admin & sensitive paths',
+                'Disallow: /admin',
+                'Disallow: /admin/*',
+                'Disallow: /login',
+                'Disallow: /logout',
+                'Disallow: /storage/logs',
+                'Disallow: /vendor',
+                'Disallow: /node_modules',
+                '',
+                '# Block search/filter URLs to prevent duplicate content',
+                'Disallow: /*?search=',
+                'Disallow: /*?year=',
+                'Disallow: /*?client=',
+                '',
+                '# AI/Scraper bots (optional - uncomment if needed)',
+                '# User-agent: GPTBot',
+                '# Disallow: /',
+                '',
+                'Sitemap: ' . url('/sitemap.xml'),
+            ];
+        }
 
         return response(implode("\n", $lines), 200, [
             'Content-Type' => 'text/plain; charset=utf-8',
