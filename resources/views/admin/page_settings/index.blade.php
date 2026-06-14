@@ -445,7 +445,20 @@
                                 <div class="ico"><span class="material-symbols-outlined">verified</span></div>
                                 <div><h4>Sertifikasi & Lokasi</h4><p>Info sertifikat & cabang</p></div>
                             </div>
-                            <textarea name="page_profile_cert_content" class="summernote" data-target-sel="#profile-cert-content">{{ $settings['page_profile_cert_content'] ?? '' }}</textarea>
+                            <div class="vb-field">
+                                <label>Konten Sertifikasi</label>
+                                <textarea name="page_profile_cert_content" class="summernote" data-target-sel="#profile-cert-content">{{ $settings['page_profile_cert_content'] ?? '' }}</textarea>
+                            </div>
+                            <div style="margin-top: 12px; border-top: 1px solid var(--vb-border); padding-top: 12px;">
+                                <label style="display:block; font-size:10px; font-weight:700; color:#475569; margin-bottom:5px; text-transform:uppercase; letter-spacing:.4px;">Logo Sertifikasi (ISO & SNI)</label>
+                                <div class="vb-upload" onclick="document.getElementById('in_profile_cert_image').click()">
+                                    <span class="material-symbols-outlined">add_photo_alternate</span>
+                                    <p>Ganti Logo Sertifikasi</p>
+                                    <p class="fname" id="fn_profile_cert"></p>
+                                </div>
+                                <input type="file" id="in_profile_cert_image" name="profile_cert_image" accept="image/*" style="display:none"
+                                       onchange="VB.previewLocalImage(this, '#profile-cert-logo', 'fn_profile_cert')">
+                            </div>
                         </div>
                     </div>
 

@@ -62,6 +62,30 @@
     </div>
 </div>
 
+@if(isset($settings['google_analytics_embed']) && !empty($settings['google_analytics_embed']))
+<!-- Google Analytics Looker Studio Dashboard -->
+<div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-8">
+    <div class="flex items-center gap-3 mb-6">
+        <div class="p-2.5 bg-red-50 text-red-600 rounded-xl">
+            <span class="material-symbols-outlined">trending_up</span>
+        </div>
+        <div>
+            <h3 class="text-lg font-bold text-gray-900">Statistik Pengunjung Website</h3>
+            <p class="text-xs text-gray-400">Analisis traffic dan kunjungan langsung dari Google Analytics</p>
+        </div>
+    </div>
+    
+    <div class="relative w-full rounded-xl overflow-hidden border border-gray-100" style="height: 550px;">
+        <iframe 
+            src="{{ $settings['google_analytics_embed'] }}" 
+            frameborder="0" 
+            style="border:0; width:100%; height:100%;" 
+            allowfullscreen>
+        </iframe>
+    </div>
+</div>
+@endif
+
 <!-- Quick Actions / Table Placeholder -->
 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
     <div class="flex items-center justify-between mb-6">

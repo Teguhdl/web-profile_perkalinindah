@@ -122,10 +122,17 @@
 
             <h3 class="text-lg font-bold text-gray-900 mb-4">Integration & Location</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div>
-                     <label class="block text-sm font-semibold text-gray-700 mb-2">Google Analytics Measurement ID</label>
-                     <input type="text" name="google_analytics_id" value="{{ $settings['google_analytics_id'] ?? '' }}" class="w-full bg-gray-50 border-gray-100 rounded-lg px-4 py-3 text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors" placeholder="e.g. G-XXXXXXXXXX">
-                     <p class="mt-2 text-xs text-gray-400">Sematkan Google Analytics ID untuk melacak kunjungan secara otomatis.</p>
+                <div class="space-y-6">
+                    <div>
+                         <label class="block text-sm font-semibold text-gray-700 mb-2">Google Analytics Measurement ID</label>
+                         <input type="text" name="google_analytics_id" value="{{ $settings['google_analytics_id'] ?? '' }}" class="w-full bg-gray-50 border-gray-100 rounded-lg px-4 py-3 text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors" placeholder="e.g. G-XXXXXXXXXX">
+                         <p class="mt-2 text-xs text-gray-400">Sematkan Google Analytics ID untuk melacak kunjungan secara otomatis.</p>
+                    </div>
+                    <div>
+                         <label class="block text-sm font-semibold text-gray-700 mb-2">Google Analytics Looker Studio Embed URL</label>
+                         <input type="url" name="google_analytics_embed" value="{{ $settings['google_analytics_embed'] ?? '' }}" class="w-full bg-gray-50 border-gray-100 rounded-lg px-4 py-3 text-gray-700 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors" placeholder="https://lookerstudio.google.com/embed/reporting/...">
+                         <p class="mt-2 text-xs text-gray-400">Masukkan Link Embed dari Google Looker Studio untuk menampilkan grafik statistik pengunjung di Dashboard Admin.</p>
+                    </div>
                 </div>
                  <div>
                      <label class="block text-sm font-semibold text-gray-700 mb-2">Google Maps Embed URL / Iframe</label>

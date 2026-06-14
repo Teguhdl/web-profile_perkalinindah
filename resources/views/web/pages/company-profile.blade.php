@@ -46,7 +46,7 @@
         <div style="margin-top: 5rem; display: flex; flex-wrap: wrap; gap: 3rem; align-items: center;">
             {{-- Kiri: Logo ISO & SNI --}}
             <div style="flex: 1; min-width: 250px; display: flex; justify-content: center; align-items: center;">
-                <img src="{{ asset('assets/web/iso-sni-logo.png') }}" loading="lazy" alt="ISO and SNI Logos" style="width: 100%; max-width: 200px;">
+                <img id="profile-cert-logo" src="{{ isset($profile_cert_image) && !empty($profile_cert_image) ? asset($profile_cert_image) : asset('assets/web/iso-sni-logo.png') }}" loading="lazy" alt="ISO and SNI Logos" style="width: 100%; max-width: 200px;">
             </div>
 
             {{-- Kanan: Text Description --}}

@@ -49,6 +49,7 @@ class PageSettingController extends Controller
             'profile_image_1',
             'profile_image_2',
             'profile_image_3',
+            'profile_cert_image',
             'profile_show_gallery',
             'profile_badge_number',
             'profile_badge_label',
@@ -74,7 +75,7 @@ class PageSettingController extends Controller
             'profile_badge_bg_color' => '#0f172a',
             'profile_badge_text_color' => '#b6d335',
             
-            'page_about_content' => '<p><strong>PT. Perkalin Indah</strong> didirikan pada tahun 1973 dan bergerak di bidang industri berbagai jenis barang yang terbuat dari karet, polyurethane, logam, dan plastik.</p><p>Perkembangan teknologi yang semakin pesat telah mendorong perusahaan-perusahaan industri, termasuk PT Perkalin Indah, untuk terus meningkatkan efektivitas dan efisiensi dalam operasional bisnisnya.</p><p>PT Perkalin Indah berkomitmen untuk senantiasa memberi prioritas kepada klien, bekerja secara profesional, berintegritas, efektif, dan efisien, serta memperhatikan standar K3 (Keselamatan, Kesehatan, Kerja). Komitmen ini dijalankan guna memenuhi ekspektasi klien atas setiap karya yang kami hasilkan.</p>',
+            'page_about_content' => '<p><strong>PT. Perkalin Indah</strong> didirikan pada tahun 1973 dan bergerak di bidang industri berbagai jenis barang yang terbuat dari karet, polyurethane, logam, dan plastik.</p><p>Perkembangan teknologi yang semakin pesat telah mendorong perusahaan-perusahaan industri, termasuk PT Perkalin Indah, untuk terus meningkatkan efektivitas dan efisiensi dalam operasional bisnisnya.</p><p>PT Perkalin Indah berkomitmen to senantiasa memberi prioritas kepada klien, bekerja secara profesional, berintegritas, efektif, dan efisien, serta memperhatikan standar K3 (Keselamatan, Kesehatan, Kerja). Komitmen ini dijalankan guna memenuhi ekspektasi klien atas setiap karya yang kami hasilkan.</p>',
             
             'page_company_profile_content' => '<p>PT. PERKALIN INDAH didirikan tahun 1973 yang bergerak di bidang industri berbagai jenis barang-barang yang terbuat dari karet, polyurethane, logam dan plastik.</p><p>PT Perkalin Indah berkomitmen untuk senantiasa memberi prioritas pada klien, bekerja secara profesional, berintegritas, efektif, efisien serta memperhatikan standar K3 dari lingkungan kerja.</p>',
             
@@ -148,6 +149,7 @@ class PageSettingController extends Controller
             'profile_image_1',
             'profile_image_2',
             'profile_image_3',
+            'profile_cert_image',
         ]);
 
         // Handle Dashboard Section Toggles (checkbox) — kalau unchecked, request tidak mengirim → simpan 0
@@ -236,7 +238,7 @@ class PageSettingController extends Controller
         }
 
         // Handle Video Upload
-         if ($request->hasFile('dashboard_video_url')) {
+        if ($request->hasFile('dashboard_video_url')) {
             $file = $request->file('dashboard_video_url');
             $filename = 'video_' . time() . '.' . $file->getClientOriginalExtension();
             $path = $file->storeAs('uploads/video', $filename, 'public');
@@ -252,8 +254,8 @@ class PageSettingController extends Controller
             );
         }
 
-        // Handle Profile Page Images (4 slot)
-        $profileImageKeys = ['profile_image_main', 'profile_image_1', 'profile_image_2', 'profile_image_3'];
+        // Handle Profile Page Images (5 slot)
+        $profileImageKeys = ['profile_image_main', 'profile_image_1', 'profile_image_2', 'profile_image_3', 'profile_cert_image'];
         foreach ($profileImageKeys as $pk) {
             if ($request->hasFile($pk)) {
                 $file = $request->file($pk);

@@ -175,6 +175,7 @@ class PageController extends Controller
                 'profile_image_1',
                 'profile_image_2',
                 'profile_image_3',
+                'profile_cert_image',
                 'profile_show_gallery',
                 'profile_badge_number',
                 'profile_badge_label',
@@ -187,6 +188,7 @@ class PageController extends Controller
             $data['profile_image_1']              = $settings['profile_image_1']              ?? null;
             $data['profile_image_2']              = $settings['profile_image_2']              ?? null;
             $data['profile_image_3']              = $settings['profile_image_3']              ?? null;
+            $data['profile_cert_image']           = $settings['profile_cert_image']           ?? null;
             $data['profile_show_gallery']         = ($settings['profile_show_gallery'] ?? '1') == '1';
             $data['profile_badge_number']         = $settings['profile_badge_number']         ?? '1973';
             $data['profile_badge_label']          = $settings['profile_badge_label']          ?? 'Tahun Berdiri';
