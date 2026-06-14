@@ -104,7 +104,92 @@ trait UploadsWebP
         // Let's verify standard Laravel storage link behavior.
         // 'storage/app/public' is linked to 'public/storage'.
         // So 'storage/products/foo.webp' in DB means URL is 'domain/storage/products/foo.webp'
-        
         return 'storage/' . $folder . '/' . $filename;
     }
+
+    /**
+     * Upload an image to a specific path, convert it to WebP, and save it to storage.
+     *
+     * @param UploadedFile $file
+     * @param string $path Full destination path (including filename)
+     * @param string $disk
+     * @param int $quality
+     * @return string The relative path to the saved file.
+     */
+    public function uploadAndOptimizeToWebp(UploadedFile $file, string $path, string $disk = 'public', int $quality = 80): string
+    {
+        $image = null;
+        $extension = strtolower($file->getClientOriginalExtension());
+        
+        switch ($extension) {
+            case 'jpeg':
+            case 'jpg':
+                $image = @imagecreatefromjpeg($file->getPathname());
+                break;
+            case 'png':
+                $image = @imagecreatefrompng($file->getPathname());
+                // Handle transparency for PNG
+                if ($image) {
+                    imagepalettetotruecolor($image);
+                    imagealphablending($image, true);
+                    imagesavealpha($image, true);
+                }
+                break;
+            case 'gif':
+                $image = @imagecreatefromgif($file->getPathname());
+                 // Handle transparency for GIF
+                 if ($image) {
+                    imagepalettetotruecolor($image);
+                }
+                break;
+            case 'webp':
+                // If already webp, just store it directly to the specified path
+                Storage::disk($disk)->put($path, file_get_contents($file->getPathname()));
+                return 'storage/' . $path;
+        }
+
+        if (!$image) {
+            // Fallback for unsupported types: just store original
+            Storage::disk($disk)->put($path, file_get_contents($file->getPathname()));
+            return 'storage/' . $path;
+        }
+
+        // Resize image if width > 1200px
+        $maxWidth = 1200;
+        $width = imagesx($image);
+        $height = imagesy($image);
+
+        if ($width > $maxWidth) {
+            $newWidth = $maxWidth;
+            $newHeight = floor($height * ($maxWidth / $width));
+
+            $newImage = imagecreatetruecolor($newWidth, $newHeight);
+            
+            // Handle transparency for new image
+            if ($extension == 'png' || $extension == 'gif') {
+                imagealphablending($newImage, false);
+                imagesavealpha($newImage, true);
+                $transparent = imagecolorallocatealpha($newImage, 255, 255, 255, 127);
+                imagefilledrectangle($newImage, 0, 0, $newWidth, $newHeight, $transparent);
+            }
+
+            imagecopyresampled($newImage, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+            imagedestroy($image);
+            $image = $newImage;
+        }
+
+        // Generate WebP data
+        ob_start();
+        imagewebp($image, null, $quality);
+        $webpData = ob_get_contents();
+        ob_end_clean();
+        
+        imagedestroy($image);
+
+        // Store the WebP data to the specified path
+        Storage::disk($disk)->put($path, $webpData);
+
+        return 'storage/' . $path;
+    }
 }
+
