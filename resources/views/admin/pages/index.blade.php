@@ -9,7 +9,7 @@
         <p class="text-gray-500 text-sm">Buat dan kelola halaman bebas dengan rich text editor untuk SEO marketing.</p>
     </div>
     <a href="{{ route('admin.pages.create') }}" class="bg-red-600 text-white px-5 py-2.5 rounded-lg font-bold hover:bg-red-700 transition flex items-center gap-2">
-        <span class="material-symbols-outlined">add</span>
+        <span class="material-symbols-outlined">adds</span>
         Buat Halaman Baru
     </a>
 </div>
