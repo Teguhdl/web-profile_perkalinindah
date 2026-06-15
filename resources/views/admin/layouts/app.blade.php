@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Admin Dashboard') - PT. Perkalin Indah</title>
     <!-- Favicon / Logo Browser -->
-    <link rel="icon" type="image/png" href="{{ asset(\App\Models\Setting::where('key', 'system_logo')->value('value') ?? 'assets/web/logo/logo.png') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset(\App\Models\Setting::where('key', 'system_logo')->value('value') ?? 'assets/web/logo/logo.png') }}">
+    @php
+        $favicon = \App\Models\Setting::where('key', 'system_favicon')->value('value') ?? \App\Models\Setting::where('key', 'system_logo')->value('value') ?? 'assets/web/logo/logo.png';
+    @endphp
+    <link rel="icon" href="{{ asset($favicon) }}">
+    <link rel="shortcut icon" href="{{ asset($favicon) }}">
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link rel="stylesheet" href="{{ asset('css/final.css') }}">

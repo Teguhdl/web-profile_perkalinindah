@@ -8,8 +8,13 @@
     @endif
 
     <!-- Favicon / Logo Browser -->
-    <link rel="icon" type="image/png" href="{{ asset($settings['system_logo'] ?? 'assets/web/logo/logo.png') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset($settings['system_logo'] ?? 'assets/web/logo/logo.png') }}">
+    @if(!empty($settings['system_favicon']))
+        <link rel="icon" href="{{ asset($settings['system_favicon']) }}">
+        <link rel="shortcut icon" href="{{ asset($settings['system_favicon']) }}">
+    @else
+        <link rel="icon" type="image/png" href="{{ asset($settings['system_logo'] ?? 'assets/web/logo/logo.png') }}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset($settings['system_logo'] ?? 'assets/web/logo/logo.png') }}">
+    @endif
 
     @if(!empty($settings['google_analytics_id']))
     <!-- Google Tag (gtag.js) -->

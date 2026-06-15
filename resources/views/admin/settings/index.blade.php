@@ -83,23 +83,47 @@
 
             <h3 class="text-lg font-bold text-gray-900 mb-4">Branding & Social</h3>
             
-            <div class="flex items-start gap-6 mb-8">
-                <div class="shrink-0">
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Company Logo</label>
-                    @if(isset($settings['system_logo']))
-                        <div class="h-32 w-32 bg-gray-50 border-2 border-dashed border-gray-200 rounded-xl flex items-center justify-center p-2 overflow-hidden relative group">
-                            <img class="h-full w-full object-contain" src="{{ asset($settings['system_logo']) }}" alt="Logo">
-                        </div>
-                    @else
-                        <div class="h-32 w-32 bg-gray-50 border-2 border-dashed border-gray-200 rounded-xl flex items-center justify-center text-gray-400">
-                             <span class="material-symbols-outlined" style="font-size: 32px">image</span>
-                        </div>
-                    @endif
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <!-- Company Logo -->
+                <div class="flex items-start gap-6 p-4 rounded-xl border border-gray-100 bg-gray-50/50">
+                    <div class="shrink-0">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Company Logo</label>
+                        @if(isset($settings['system_logo']))
+                            <div class="h-24 w-24 bg-white border border-gray-200 rounded-xl flex items-center justify-center p-2 overflow-hidden relative group">
+                                <img class="h-full w-full object-contain" src="{{ asset($settings['system_logo']) }}" alt="Logo">
+                            </div>
+                        @else
+                            <div class="h-24 w-24 bg-white border border-gray-200 rounded-xl flex items-center justify-center text-gray-400">
+                                 <span class="material-symbols-outlined" style="font-size: 28px">image</span>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Upload Logo Baru</label>
+                        <input type="file" name="system_logo" class="block w-full text-xs text-gray-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100 cursor-pointer"/>
+                        <p class="mt-1.5 text-[10px] text-gray-400 leading-normal">Format: PNG, JPG, GIF. Maks: 2MB. Digunakan di Header & Footer.</p>
+                    </div>
                 </div>
-                <div class="flex-1">
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Upload New Logo</label>
-                    <input type="file" name="system_logo" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100 cursor-pointer"/>
-                    <p class="mt-2 text-xs text-gray-400">Supported formats: PNG, JPG, GIF. Max size: 2MB.</p>
+
+                <!-- Favicon (Browser Icon) -->
+                <div class="flex items-start gap-6 p-4 rounded-xl border border-gray-100 bg-gray-50/50">
+                    <div class="shrink-0">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Favicon (Browser Icon)</label>
+                        @if(isset($settings['system_favicon']))
+                            <div class="h-24 w-24 bg-white border border-gray-200 rounded-xl flex items-center justify-center p-2 overflow-hidden relative group">
+                                <img class="h-full w-full object-contain" src="{{ asset($settings['system_favicon']) }}" alt="Favicon">
+                            </div>
+                        @else
+                            <div class="h-24 w-24 bg-white border border-gray-200 rounded-xl flex items-center justify-center text-gray-400">
+                                 <span class="material-symbols-outlined" style="font-size: 28px">globe</span>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Upload Favicon Baru</label>
+                        <input type="file" name="system_favicon" class="block w-full text-xs text-gray-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100 cursor-pointer"/>
+                        <p class="mt-1.5 text-[10px] text-gray-400 leading-normal">Harus Persegi (1:1). Rekomendasi: 48x48, 96x96, atau 128x128 px. Format: PNG, ICO, JPG. Maks: 1MB. Muncul di tab browser & pencarian Google.</p>
+                    </div>
                 </div>
             </div>
 

@@ -26,8 +26,8 @@ class SettingController extends Controller
             if ($request->hasFile($key)) {
                 $file = $request->file($key);
                 
-                // Cek apakah ini gambar untuk dikonversi ke WebP
-                if (in_array(strtolower($file->getClientOriginalExtension()), ['jpeg', 'jpg', 'png', 'webp'])) {
+                // Cek apakah ini gambar untuk dikonversi ke WebP (kecuali system_favicon agar tetap menggunakan format asli seperti PNG/ICO demi kecocokan pencarian Google)
+                if ($key !== 'system_favicon' && in_array(strtolower($file->getClientOriginalExtension()), ['jpeg', 'jpg', 'png', 'webp'])) {
                     $filename = time() . '_' . pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.webp';
                     $this->uploadAndOptimizeToWebp($file, 'settings/' . $filename);
                 } else {
