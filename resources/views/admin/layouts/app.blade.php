@@ -6,10 +6,19 @@
     <title>@yield('title', 'Admin Dashboard') - PT. Perkalin Indah</title>
     <!-- Favicon / Logo Browser -->
     @php
-        $favicon = \App\Models\Setting::where('key', 'system_favicon')->value('value') ?? \App\Models\Setting::where('key', 'system_logo')->value('value') ?? 'assets/web/logo/logo.png';
+        $favicon = \App\Models\Setting::where('key', 'system_favicon')->value('value');
     @endphp
-    <link rel="icon" href="{{ asset($favicon) }}">
-    <link rel="shortcut icon" href="{{ asset($favicon) }}">
+    @if(!empty($favicon))
+        <link rel="icon" href="{{ asset($favicon) }}">
+        <link rel="shortcut icon" href="{{ asset($favicon) }}">
+    @else
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="48x48" href="{{ asset('favicon-48x48.png') }}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon-96x96.png') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    @endif
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link rel="stylesheet" href="{{ asset('css/final.css') }}">
