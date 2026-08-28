@@ -4,7 +4,7 @@
 <section class="cke-section" style="padding-top: 120px; min-height: 100vh;">
     <div class="cke-container">
         
-        <x-cke.button variant="ghost" href="{{ url('produk') }}" iconLeft="arrow-right" style="margin-bottom: 2rem; transform: scaleX(-1); display: inline-flex;"><span style="transform: scaleX(-1);">Kembali ke Produk</span></x-cke.button>
+        <x-cke.button variant="ghost" href="{{ url('produk') }}" iconLeft="arrow-left" style="margin-bottom: 2rem; display: inline-flex;">Kembali ke Produk</x-cke.button>
 
         <div style="display: grid; grid-template-columns: 1fr; gap: 3rem;">
             <div style="width: 100%; height: 400px; border-radius: var(--radius-lg); overflow: hidden; background: var(--surface-card); box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: center;">

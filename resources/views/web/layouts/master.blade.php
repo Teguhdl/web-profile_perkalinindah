@@ -11,6 +11,7 @@
         @yield('content')
     </main>
     @include('web.layouts.footer')
+    @include('web.layouts.floating-wa')
     @include('web.layouts.scripts')
     @stack('scripts')
 </body>
